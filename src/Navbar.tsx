@@ -15,7 +15,7 @@ export default function Navbar() {
         <div className="titoli">
           <h2 className="i-miei-soldini">I miei soldini</h2>
           <h3 className="ricordati">
-            Ricordati di proteggerli, non di spenderli!
+            Ricordati di conservali, non di spenderli!
           </h3>
         </div>
       </div>

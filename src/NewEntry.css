@@ -1,12 +1,21 @@
-.scritte {
+main {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+/*1 parte*/
+.prima-parte {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
   margin-top: 8%;
-  margin-left: 8%;
+  padding-left: 8%;
 }
 
 .new-entry {
   color: rgb(38, 38, 38);
+  white-space: nowrap;
   font-size: clamp(
     1.5rem,
     5vw,
@@ -15,6 +24,60 @@
 }
 
 .inserisci-dati {
+  white-space: nowrap;
   color: rgb(148, 147, 147);
   font-size: clamp(1rem, 3vw, 1.2rem); /* minimo 1rem, massimo 1.2rem */
+}
+
+/*2 parte*/
+.seconda-parte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+.amount {
+  font-size: 10px;
+  color: #66455b;
+  margin-bottom: 10px;
+}
+
+.importo {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.euro {
+  color: #66455b;
+  font-size: 50px;
+}
+
+.input-prezzo {
+  border: none;
+  background: transparent;
+  font-size: 35px;
+  outline: none;
+  width: 120px;
+  padding: 5px 0;
+}
+
+.input-prezzo:focus {
+  border-bottom: 2px solid #e7bfd7;
+}
+
+/*terza parte*/
+.terza-parte {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 14%;
+  padding-left: 8%;
+}
+
+.metodi-di-pagamento {
+  color: rgb(148, 147, 147);
+  font-size: 10px;
+  align-items: flex-start;
 }
