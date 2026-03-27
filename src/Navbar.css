@@ -1,0 +1,129 @@
+/* STILI BASE */
+.navbar {
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  height: 70px;
+}
+
+.navbar-sinistra {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex: 1;
+  min-width: 0; /* per il testo che va a capo */
+}
+
+.titoli {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  word-wrap: break-word; /* permette al testo di andare a capo */
+  min-width: 0;
+}
+
+.icona {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0; /* non si riduce */
+}
+
+.i-miei-soldini {
+  color: rgb(38, 38, 38);
+  font-size: 1.1rem;
+  font-weight: 600;
+  white-space: nowrap; /* resta su una riga */
+}
+
+.ricordati {
+  color: rgb(154, 152, 152);
+  font-size: 0.8rem;
+  font-weight: 400;
+  overflow-wrap: break-word; /* va a capo se serve */
+}
+
+.navbar-destra {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0; /* resta sempre visibile */
+}
+
+.data {
+  font-size: 0.9rem;
+  color: rgb(120, 120, 120);
+  white-space: nowrap;
+}
+
+.icona-calendario {
+  width: 1.75rem;
+  height: 1.75rem;
+  cursor: pointer;
+}
+
+.icona-calendario:hover {
+  transform: scale(1.1);
+  transition: 0.2s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1.5rem;
+  }
+
+  .icona {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .i-miei-soldini {
+    font-size: 1rem;
+  }
+
+  .ricordati {
+    font-size: 0.75rem;
+  }
+
+  .data {
+    font-size: 0.85rem;
+  }
+
+  .icona-calendario {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .navbar {
+    padding: 0 0.8rem;
+  }
+
+  .titoli {
+    font-size: 0.9rem;
+  }
+
+  .i-miei-soldini {
+    font-size: 0.95rem;
+  }
+
+  .ricordati {
+    font-size: 0.7rem;
+  }
+
+  .navbar-destra {
+    order: 1; /* rimane a destra */
+  }
+
+  .data {
+    font-size: 0.8rem;
+  }
+
+  .icona-calendario {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
