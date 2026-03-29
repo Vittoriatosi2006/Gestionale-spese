@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-sinistra">
-        <img src="/icona.png" className="icona" />
+        <img src="/icona-navbar.png" className="icona-navbar" />
         <div className="titoli">
           <h2 className="i-miei-soldini">I miei soldini</h2>
           <h3 className="ricordati">
