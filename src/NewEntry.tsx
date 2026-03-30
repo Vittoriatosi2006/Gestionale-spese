@@ -1,7 +1,10 @@
+import { useState } from "react";
 import "./NewEntry.css";
 import "./style.css";
 
 export default function NewEntry() {
+  const [bottoneSelezionato, setBottoneSelezionato] = useState("");
+
   return (
     <main>
       <div className="prima-parte">
@@ -20,11 +23,17 @@ export default function NewEntry() {
       <div className="terza-parte">
         <h3 className="metodi-di-pagamento-testo">METODI DI PAGAMENTO</h3>
         <div className="bottoni-pagamenti">
-          <button className="metodo">
+          <button
+            className={`metodo ${bottoneSelezionato === "carta" ? "selezionato" : ""}`}
+            onClick={() => setBottoneSelezionato("carta")}
+          >
             <img src="icona-carta.svg" />
             CARTA
           </button>
-          <button className="metodo">
+          <button
+            className={`metodo ${bottoneSelezionato === "contanti" ? "selezionato" : ""}`}
+            onClick={() => setBottoneSelezionato("contanti")}
+          >
             <img src="icona-contanti.svg" />
             CONTANTI
           </button>
