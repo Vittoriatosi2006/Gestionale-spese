@@ -17,20 +17,43 @@ main {
   margin-top: 8%;
 }
 
-.new-entry {
-  color: rgb(38, 38, 38);
-  white-space: nowrap;
-  font-size: clamp(
-    1.5rem,
-    5vw,
-    2rem
-  ); /* minimo 1.5rem, massimo 2rem, cresce con la larghezza dello schermo */
+.entrate {
+  font-size: clamp(1.8rem, 6vw, 2.4rem); /* leggermente più grande */
+  font-weight: 800; /* più spesso */
+  color: #704257; /* colore pieno, scuro e leggibile */
+  text-shadow:
+    0 2px 6px rgba(231, 191, 215, 0.5),
+    /* glow rosa più evidente */ 0 3px 6px rgba(0, 0, 0, 0.2); /* ombra nera morbida per contrasto */
+  animation: bounceIn 0.8s ease-out forwards; /* rimbalzo leggero */
+  transition: all 0.3s ease;
 }
 
 .inserisci-dati {
-  white-space: nowrap;
-  color: rgb(148, 147, 147);
-  font-size: clamp(1rem, 3vw, 1.2rem); /* minimo 1rem, massimo 1.2rem */
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #8d8b8f; /* grigio elegante */
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    0 0 6px rgba(231, 191, 215, 0.2); /* leggero glow rosa */
+  animation: bounceIn 0.8s ease-out forwards;
+  animation-delay: 0.2s; /* parte dopo Entrate */
+  transition: all 0.3s ease;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(5px) scale(1.05);
+  }
+  80% {
+    transform: translateY(-2px) scale(1);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
 }
 
 /*2 parte*/
@@ -38,8 +61,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
-  margin-bottom: 30px;
+  margin-top: 60px;
 }
 .amount {
   font-size: 10px;
@@ -57,7 +79,6 @@ main {
   color: #66455b;
   font-size: 50px;
 }
-
 .input-prezzo {
   border: none;
   background: transparent;
@@ -65,19 +86,22 @@ main {
   outline: none;
   width: 120px;
   padding: 5px 0;
+  border-bottom: 2px solid transparent;
+  transition: all 0.25s ease;
 }
 
 .input-prezzo:focus {
   border-bottom: 2px solid #e7bfd7;
+  transform: scale(1.05);
+  text-shadow: 0 0 6px rgba(231, 191, 215, 0.6);
 }
 
 /* terza parte */
-
 .terza-parte {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 14%;
+  margin-top: 60px;
 }
 
 .metodi-di-pagamento-testo {
@@ -86,31 +110,48 @@ main {
   margin-bottom: 20px;
 }
 
-/* contenitore grigio */
 .bottoni-pagamenti {
+  position: relative;
   display: flex;
-  justify-content: center;
   background-color: #e9e5e7;
-  border-radius: 14px;
+  border-radius: 20px;
   padding: 6px;
-  gap: 6px;
-  box-sizing: border-box;
+  height: 50px;
+  overflow: hidden;
+}
+
+.indicatore {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: calc(50% - 6px);
+  height: calc(100% - 12px);
+  background: linear-gradient(120deg, white, #fff, #f8eef4);
+  border-radius: 16px;
+  box-shadow:
+    0 0 10px rgba(231, 191, 215, 0.8),
+    0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.indicatore.destra {
+  transform: translateX(100%);
 }
 
 .metodo {
-  flex: 1; /* ogni bottone prende metà spazio */
+  flex: 1;
   display: flex;
-  justify-content: center; /* centra icona + testo */
+  justify-content: center;
   align-items: center;
   gap: 6px;
   border: none;
   background: transparent;
-  padding: 8px 0;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 13px;
   color: #6b6b6b;
   cursor: pointer;
-  transition: all 0.2s ease;
+  z-index: 1;
 }
 
 .metodo img {
@@ -118,15 +159,90 @@ main {
   height: 16px;
 }
 
-.metodo.selezionato {
-  background-color: white;
-  font-size: 14px; /* testo leggermente più grande */
-
-  box-shadow:
-    0 0 8px rgba(231, 191, 215, 0.8),
-    0 2px 6px rgba(0, 0, 0, 0.15);
+/* quarta parte */
+.quarta-parte {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 40px;
 }
 
-.metodo:active {
-  transform: scale(0.96);
+.descrizione {
+  color: rgb(148, 147, 147);
+  font-size: 10px;
+  margin-bottom: 20px;
+}
+
+.input-descrizione {
+  border: none;
+  background-color: white;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 20px;
+  height: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* ombra leggera */
+  transition: all 0.3s ease; /* per animazioni */
+  position: relative;
+  box-sizing: border-box;
+}
+
+.input-descrizione:focus {
+  transform: scale(1.02); /* ingrandimento leggero */
+  box-shadow:
+    0 4px 12px rgba(231, 191, 215, 0.6),
+    /* glow rosa */ 0 2px 6px rgba(0, 0, 0, 0.15); /* ombra standard */
+
+  background: linear-gradient(120deg, #ffffff, #f8eef4, #ffffff);
+  background-size: 200% 200%;
+  animation: gradientShift 2s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.parte-data {
+  margin-top: 30px;
+}
+
+.data {
+  color: rgb(148, 147, 147);
+  font-size: 10px;
+  margin-bottom: 20px;
+}
+
+.input-data {
+  border: none;
+  background-color: white;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 20px;
+  height: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* ombra leggera */
+  transition: all 0.3s ease; /* per animazioni */
+  position: relative;
+  box-sizing: border-box;
+}
+
+.input-data:focus {
+  transform: scale(1.02); /* ingrandimento leggero */
+  box-shadow:
+    0 4px 12px rgba(231, 191, 215, 0.6),
+    /* glow rosa */ 0 2px 6px rgba(0, 0, 0, 0.15); /* ombra standard */
+
+  background: linear-gradient(120deg, #ffffff, #f8eef4, #ffffff);
+  background-size: 200% 200%;
+  animation: gradientShift 2s ease infinite;
 }

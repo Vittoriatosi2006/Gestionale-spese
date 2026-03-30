@@ -20,7 +20,7 @@ export default function Navbar() {
         </div>
       </div>
       <div className="navbar-destra">
-        <span className="data">{oggi}</span>
+        <span className="data-di-oggi">{oggi}</span>
         <img src="/icona-calendario.png" className="icona-calendario" />
       </div>
     </nav>

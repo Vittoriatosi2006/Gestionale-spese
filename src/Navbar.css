@@ -52,7 +52,7 @@
   flex-shrink: 0; /* resta sempre visibile */
 }
 
-.data {
+.data-di-oggi {
   font-size: 0.9rem;
   color: rgb(120, 120, 120);
   white-space: nowrap;
