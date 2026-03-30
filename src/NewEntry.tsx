@@ -6,7 +6,7 @@ export default function NewEntry() {
   const [bottoneSelezionato, setBottoneSelezionato] = useState("");
 
   return (
-    <main>
+    <main className="new-entry-container">
       <div className="prima-parte">
         <h1 className="entrate"> Entrate </h1>
         <h2 className="inserisci-dati"> Inserisci i dati del pagamento: </h2>
@@ -58,6 +58,20 @@ export default function NewEntry() {
           <h3 className="data"> DATA </h3>
           <input type="date" className="input-data" />
         </div>
+      </div>
+
+      <div className="quinta-parte">
+        <button
+          className="salva"
+          onClick={(e) => {
+            const btn = e.currentTarget;
+            btn.classList.add("clicked");
+            // togli la classe dopo l'animazione
+            setTimeout(() => btn.classList.remove("clicked"), 2000);
+          }}
+        >
+          Salva
+        </button>
       </div>
     </main>
   );

@@ -1,4 +1,4 @@
-main {
+.new-entry-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -245,4 +245,80 @@ main {
   background: linear-gradient(120deg, #ffffff, #f8eef4, #ffffff);
   background-size: 200% 200%;
   animation: gradientShift 2s ease infinite;
+}
+
+/*quinta parte*/
+.quinta-parte {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 60px;
+}
+
+.salva {
+  background: linear-gradient(120deg, #66455b 0%, #a18497 50%, #836177 100%);
+  border: none;
+  width: 100%;
+  border-radius: 12px;
+  padding: 12px 30px;
+  font-size: 14px;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow:
+    0 4px 12px rgba(102, 69, 91, 0.8),
+    0 2px 6px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.8s ease;
+}
+
+.salva:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 6px 14px rgba(102, 69, 91, 0.9),
+    0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* pseudo-elemento bianco centrale */
+.salva::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.05) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* animazione al click */
+.salva.clicked::after {
+  opacity: 1;
+  animation: flashMove 4s ease-out forwards;
+}
+
+@keyframes flashMove {
+  0% {
+    width: 0%;
+    opacity: 1;
+  }
+  40% {
+    width: 300%;
+    opacity: 1;
+  }
+  70% {
+    width: 300%;
+    opacity: 0.6;
+  }
+  100% {
+    width: 0%;
+    opacity: 0;
+  }
 }
