@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
 import NewEntry from "./NewEntry";
-// import Recenti from "./Recenti";
+import Recenti from "./Recenti";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <Navbar />
       <div className="main-content">
         <NewEntry />
-        {/* <Recenti /> */}
+        <Recenti />
       </div>
     </div>
   );

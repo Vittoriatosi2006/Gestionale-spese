@@ -1,5 +1,5 @@
-// import "./Recenti.css";
+import "./Recenti.css";
 
-// export default function Recenti() {
-//   return <div> ciao</div>;
-// }
+export default function Recenti() {
+  return <div> ciao</div>;
+}
