@@ -79,6 +79,7 @@
   color: #66455b;
   font-size: 50px;
 }
+
 .input-prezzo {
   border: none;
   background: transparent;
@@ -89,14 +90,22 @@
   border-bottom: 2px solid transparent;
   transition: all 0.25s ease;
 }
-
-.input-prezzo:focus {
+.input-prezzo:focus,
+.input-prezzo:hover {
   border-bottom: 2px solid #e7bfd7;
   transform: scale(1.05);
   text-shadow: 0 0 6px rgba(231, 191, 215, 0.6);
 }
 
+/*per togliere le frecce di incremento/decremento nei campi numerici*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /* terza parte */
+
 .terza-parte {
   display: flex;
   flex-direction: column;
@@ -118,6 +127,14 @@
   padding: 6px;
   height: 50px;
   overflow: hidden;
+  transition: all 0.8s ease;
+}
+
+.bottoni-pagamenti:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 6px 14px rgba(102, 69, 91, 0.9),
+    0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .indicatore {
@@ -186,6 +203,14 @@
   transition: all 0.3s ease; /* per animazioni */
   position: relative;
   box-sizing: border-box;
+  transition: all 0.8s ease;
+}
+
+.input-descrizione:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 6px 14px rgba(102, 69, 91, 0.9),
+    0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .input-descrizione:focus {
@@ -234,6 +259,14 @@
   transition: all 0.3s ease; /* per animazioni */
   position: relative;
   box-sizing: border-box;
+  transition: all 0.8s ease;
+}
+
+.input-data:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 6px 14px rgba(102, 69, 91, 0.9),
+    0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .input-data:focus {

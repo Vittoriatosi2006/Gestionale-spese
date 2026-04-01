@@ -32,13 +32,44 @@
   margin-bottom: 30px;
 }
 
-.descrizione-pagamento {
+.descrizione-e-data {
+  flex: 1;
+  margin-left: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
+.descrizione-pagamento {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-weight: 500;
+}
+
 .icona-acquisto {
   width: 40px;
   height: 40px;
+}
+
+.data-pagamento {
+  font-size: 0.8rem;
+  color: #a0a0a0; /* grigio chiaro */
+}
+
+.prezzo-e-metodo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.prezzo-pagamento {
+  font-weight: 600;
+}
+
+.metodo-pagamento {
+  font-size: 0.8rem;
+  color: #a0a0a0; /* grigio chiaro */
 }

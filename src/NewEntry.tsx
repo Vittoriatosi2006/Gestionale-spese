@@ -1,22 +1,40 @@
 import { useState } from "react";
 import "./NewEntry.css";
 import "./style.css";
+import type { Pagamento } from "./type";
 
-export default function NewEntry() {
-  const [bottoneSelezionato, setBottoneSelezionato] = useState("");
+interface NewEntryProps {
+  onSalva: (p: Pagamento) => void;
+}
+
+export default function NewEntry({ onSalva }: NewEntryProps) {
+  const [bottoneSelezionato, setBottoneSelezionato] = useState<
+    "carta" | "contanti"
+  >("carta");
+  const [importo, setImporto] = useState<number | "">("");
+  const [descrizione, setDescrizione] = useState("");
+  const [data, setData] = useState("");
 
   return (
     <main className="new-entry-container">
       <div className="prima-parte">
-        <h1 className="entrate"> Entrate </h1>
-        <h2 className="inserisci-dati"> Inserisci i dati del pagamento: </h2>
+        <h1 className="entrate">Entrate</h1>
+        <h2 className="inserisci-dati">Inserisci i dati del pagamento:</h2>
       </div>
 
       <div className="seconda-parte">
-        <h3 className="amount"> AMOUNT </h3>
+        <h3 className="amount">AMOUNT</h3>
         <div className="importo">
-          <span className="euro"> €</span>
-          <input type="number" className="input-prezzo" placeholder="0,00" />
+          <span className="euro">€</span>
+          <input
+            type="number"
+            className="input-prezzo"
+            placeholder="0,00"
+            value={importo}
+            onChange={(e) =>
+              setImporto(e.target.value === "" ? "" : Number(e.target.value))
+            }
+          />
         </div>
       </div>
 
@@ -32,14 +50,14 @@ export default function NewEntry() {
             className="metodo"
             onClick={() => setBottoneSelezionato("carta")}
           >
-            <img src="icona-carta.svg" />
+            <img src="icona-carta.svg" alt="Carta" />
             CARTA
           </button>
           <button
             className="metodo"
             onClick={() => setBottoneSelezionato("contanti")}
           >
-            <img src="icona-contanti.svg" />
+            <img src="icona-contanti.svg" alt="Contanti" />
             CONTANTI
           </button>
         </div>
@@ -47,27 +65,41 @@ export default function NewEntry() {
 
       <div className="quarta-parte">
         <div className="parte-descrizione">
-          <h3 className="descrizione"> DESCRIZIONE</h3>
+          <h3 className="descrizione">DESCRIZIONE</h3>
           <input
             type="text"
             className="input-descrizione"
             placeholder="Cosa hai acquistato? Dove?"
+            value={descrizione}
+            onChange={(e) => setDescrizione(e.target.value)}
           />
         </div>
         <div className="parte-data">
-          <h3 className="data"> DATA </h3>
-          <input type="date" className="input-data" />
+          <h3 className="data">DATA</h3>
+          <input
+            type="date"
+            className="input-data"
+            value={data}
+            onChange={(e) => setData(e.target.value)}
+          />
         </div>
       </div>
 
       <div className="quinta-parte">
         <button
           className="salva"
-          onClick={(e) => {
-            const btn = e.currentTarget;
-            btn.classList.add("clicked");
-            // togli la classe dopo l'animazione
-            setTimeout(() => btn.classList.remove("clicked"), 2000);
+          onClick={() => {
+            if (!importo || !descrizione || !data)
+              return alert("Compila tutti i campi!");
+            onSalva({
+              importo: Number(importo),
+              metodo: bottoneSelezionato,
+              descrizione,
+              data,
+            });
+            setImporto("");
+            setDescrizione("");
+            setData("");
           }}
         >
           Salva
