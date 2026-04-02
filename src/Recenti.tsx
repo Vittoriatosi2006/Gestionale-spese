@@ -6,7 +6,7 @@ import "./ConfirmModal.css";
 
 interface RecentiProps {
   pagamenti: Pagamento[];
-  onElimina: (index: number) => void;
+  onElimina: (id: number) => void;
 }
 
 type PagamentiPerMese = {
@@ -15,9 +15,9 @@ type PagamentiPerMese = {
 
 export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  // Ordinai pagamenti dal più recente al meno recente
+  // Ordina pagamenti dal più recente al meno recente
   const pagamentiOrdinati = [...pagamenti].sort(
     (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime(),
   );
@@ -31,22 +31,22 @@ export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
     pagamentiPerMese[mese].push(p);
   });
 
-  const handleClickPagamento = (index: number) => {
-    setSelectedIndex(index);
+  const handleClickPagamento = (id: number) => {
+    setSelectedId(id);
     setModalOpen(true);
   };
 
   const handleConfirm = () => {
-    if (selectedIndex !== null) {
-      onElimina(selectedIndex);
+    if (selectedId !== null) {
+      onElimina(selectedId); // passa direttamente l'ID
       setModalOpen(false);
-      setSelectedIndex(null);
+      setSelectedId(null);
     }
   };
 
   const handleCancel = () => {
     setModalOpen(false);
-    setSelectedIndex(null);
+    setSelectedId(null);
   };
 
   return (
@@ -56,11 +56,11 @@ export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
       {Object.entries(pagamentiPerMese).map(([mese, pagamentiDelMese]) => (
         <div key={mese}>
           <h3 className="mese-sezione">{mese}</h3>
-          {pagamentiDelMese.map((p, index) => (
+          {pagamentiDelMese.map((p) => (
             <div
               className="spesa-singola"
-              key={index}
-              onClick={() => handleClickPagamento(index)}
+              key={p.id} // usa ID unico
+              onClick={() => handleClickPagamento(p.id)} // passa ID
             >
               <img src="icona-acquisto.svg" className="icona-acquisto" />
               <div className="descrizione-e-data">
@@ -74,9 +74,7 @@ export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
               </div>
               <div className="prezzo-e-metodo">
                 <h3
-                  className={`prezzo-pagamento ${
-                    p.importo >= 0 ? "entrata" : "spesa"
-                  }`}
+                  className={`prezzo-pagamento ${p.importo >= 0 ? "entrata" : "spesa"}`}
                 >
                   {p.importo >= 0 ? "+" : "-"} €{" "}
                   {Math.abs(p.importo).toFixed(2)}

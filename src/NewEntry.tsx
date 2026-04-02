@@ -115,6 +115,7 @@ export default function NewEntry({ onSalva }: NewEntryProps) {
               segno === "-" ? -Number(importo) : Number(importo);
 
             onSalva({
+              id: Date.now(),
               importo: importoFinale,
               metodo: bottoneSelezionato,
               descrizione,

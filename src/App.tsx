@@ -7,6 +7,7 @@ import type { Pagamento } from "./type";
 function App() {
   const [pagamenti, setPagamenti] = useState<Pagamento[]>([]);
 
+  // Carica dal localStorage
   useEffect(() => {
     const datiSalvati = localStorage.getItem("pagamenti");
     if (datiSalvati) {
@@ -20,9 +21,8 @@ function App() {
     localStorage.setItem("pagamenti", JSON.stringify(nuoviPagamenti));
   };
 
-  const eliminaPagamento = (index: number) => {
-    const nuoviPagamenti = [...pagamenti];
-    nuoviPagamenti.splice(index, 1);
+  const eliminaPagamento = (id: number) => {
+    const nuoviPagamenti = pagamenti.filter((p) => p.id !== id);
     setPagamenti(nuoviPagamenti);
     localStorage.setItem("pagamenti", JSON.stringify(nuoviPagamenti));
   };

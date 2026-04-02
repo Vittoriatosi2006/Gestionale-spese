@@ -1,7 +1,8 @@
 // src/types.ts
-export interface Pagamento {
+export type Pagamento = {
+  id: number; // <- aggiungi questa riga
   importo: number;
   metodo: "carta" | "contanti";
   descrizione: string;
-  data: string;
-}
+  data: string; // o Date, se preferisci
+};
