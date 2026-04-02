@@ -20,6 +20,14 @@
   transition: all 0.3s ease;
   padding-bottom: 20px;
 }
+.mese-sezione {
+  color: #a0a0a0; /* grigio chiaro */
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 25px 0 10px 0;
+  padding-left: 10px;
+  text-transform: capitalize;
+}
 
 .spesa-singola {
   display: flex;
