@@ -22,7 +22,13 @@ export default function Recenti({ pagamenti }: RecentiProps) {
             </span>
           </div>
           <div className="prezzo-e-metodo">
-            <h3 className="prezzo-pagamento">€ {p.importo.toFixed(2)}</h3>
+            <h3
+              className={`prezzo-pagamento ${
+                p.importo >= 0 ? "entrata" : "spesa"
+              }`}
+            >
+              {p.importo >= 0 ? "+" : "-"} € {Math.abs(p.importo).toFixed(2)}
+            </h3>
             <span className="metodo-pagamento">
               {p.metodo === "carta" ? "Carta" : "Contanti"}
             </span>

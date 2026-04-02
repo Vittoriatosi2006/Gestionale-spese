@@ -73,3 +73,11 @@
   font-size: 0.8rem;
   color: #a0a0a0; /* grigio chiaro */
 }
+
+.entrata {
+  color: #2ecc71;
+}
+
+.spesa {
+  color: #e74c3c;
+}

@@ -14,18 +14,43 @@ export default function NewEntry({ onSalva }: NewEntryProps) {
   const [importo, setImporto] = useState<number | "">("");
   const [descrizione, setDescrizione] = useState("");
   const [data, setData] = useState("");
+  const [segno, setSegno] = useState("+");
 
   return (
     <main className="new-entry-container">
       <div className="prima-parte">
-        <h1 className="entrate">Entrate</h1>
+        <h1 className="entrate">Gestionale spese</h1>
         <h2 className="inserisci-dati">Inserisci i dati del pagamento:</h2>
       </div>
 
       <div className="seconda-parte">
         <h3 className="amount">AMOUNT</h3>
+
         <div className="importo">
+          <div className="segno-container">
+            <span className="tipo-operazione">
+              {segno === "+" ? "Entrata" : "Uscita"}
+            </span>
+
+            <div className="segno">
+              <button
+                className={segno === "+" ? "segno-attivo" : ""}
+                onClick={() => setSegno("+")}
+              >
+                +
+              </button>
+
+              <button
+                className={segno === "-" ? "segno-attivo" : ""}
+                onClick={() => setSegno("-")}
+              >
+                -
+              </button>
+            </div>
+          </div>
+
           <span className="euro">€</span>
+
           <input
             type="number"
             className="input-prezzo"
@@ -91,12 +116,17 @@ export default function NewEntry({ onSalva }: NewEntryProps) {
           onClick={() => {
             if (!importo || !descrizione || !data)
               return alert("Compila tutti i campi!");
+
+            const importoFinale =
+              segno === "-" ? -Number(importo) : Number(importo);
+
             onSalva({
-              importo: Number(importo),
+              importo: importoFinale,
               metodo: bottoneSelezionato,
               descrizione,
               data,
             });
+
             setImporto("");
             setDescrizione("");
             setData("");
