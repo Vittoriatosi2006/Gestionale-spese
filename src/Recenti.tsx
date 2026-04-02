@@ -1,7 +1,9 @@
+import { useState } from "react";
 import "./Recenti.css";
 import type { Pagamento } from "./type";
+import ConfirmModal from "./ConfirmModal";
+import "./ConfirmModal.css";
 
-// aggiungi onElimina qui
 interface RecentiProps {
   pagamenti: Pagamento[];
   onElimina: (index: number) => void;
@@ -12,19 +14,40 @@ type PagamentiPerMese = {
 };
 
 export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  // Ordinai pagamenti dal più recente al meno recente
   const pagamentiOrdinati = [...pagamenti].sort(
     (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime(),
   );
 
+  // Raggruppa per mese
   const pagamentiPerMese: PagamentiPerMese = {};
   pagamentiOrdinati.forEach((p) => {
     const date = new Date(p.data);
     const mese = date.toLocaleDateString("it-IT", { month: "long" });
-    if (!pagamentiPerMese[mese]) {
-      pagamentiPerMese[mese] = [];
-    }
+    if (!pagamentiPerMese[mese]) pagamentiPerMese[mese] = [];
     pagamentiPerMese[mese].push(p);
   });
+
+  const handleClickPagamento = (index: number) => {
+    setSelectedIndex(index);
+    setModalOpen(true);
+  };
+
+  const handleConfirm = () => {
+    if (selectedIndex !== null) {
+      onElimina(selectedIndex);
+      setModalOpen(false);
+      setSelectedIndex(null);
+    }
+  };
+
+  const handleCancel = () => {
+    setModalOpen(false);
+    setSelectedIndex(null);
+  };
 
   return (
     <main className="recenti-container">
@@ -37,8 +60,7 @@ export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
             <div
               className="spesa-singola"
               key={index}
-              onClick={() => onElimina(pagamenti.indexOf(p))}
-              style={{ cursor: "pointer" }}
+              onClick={() => handleClickPagamento(index)}
             >
               <img src="icona-acquisto.svg" className="icona-acquisto" />
               <div className="descrizione-e-data">
@@ -67,6 +89,13 @@ export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
           ))}
         </div>
       ))}
+
+      <ConfirmModal
+        isOpen={modalOpen}
+        message="Vuoi eliminare questo pagamento?"
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+      />
     </main>
   );
 }

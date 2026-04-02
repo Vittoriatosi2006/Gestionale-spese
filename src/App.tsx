@@ -21,9 +21,6 @@ function App() {
   };
 
   const eliminaPagamento = (index: number) => {
-    const conferma = window.confirm("Vuoi davvero eliminare questo pagamento?");
-    if (!conferma) return;
-
     const nuoviPagamenti = [...pagamenti];
     nuoviPagamenti.splice(index, 1);
     setPagamenti(nuoviPagamenti);

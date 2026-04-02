@@ -1,0 +1,82 @@
+/* overlay semi-trasparente */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* card del modal */
+.modal-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 24px 32px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  animation: fadeInScale 0.2s ease-out forwards;
+}
+
+/* titolo e messaggio */
+.modal-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  color: #66455b;
+}
+.modal-card p {
+  margin-bottom: 24px;
+  color: #555;
+}
+
+/* pulsanti */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.modal-cancel,
+.modal-confirm {
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-cancel {
+  background-color: #f5f3f6;
+  color: #66455b;
+}
+.modal-cancel:hover {
+  background-color: #e0d9df;
+}
+
+.modal-confirm {
+  background-color: #94342a;
+  color: white;
+}
+.modal-confirm:hover {
+  background-color: #a53e31;
+}
+
+/* animazione di entrata */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
