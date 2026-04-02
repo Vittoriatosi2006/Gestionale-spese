@@ -24,8 +24,6 @@ export default function NewEntry({ onSalva }: NewEntryProps) {
       </div>
 
       <div className="seconda-parte">
-        <h3 className="amount">AMOUNT</h3>
-
         <div className="importo">
           <div className="segno-container">
             <span className="tipo-operazione">
