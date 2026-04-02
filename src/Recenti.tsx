@@ -6,10 +6,14 @@ interface RecentiProps {
 }
 
 export default function Recenti({ pagamenti }: RecentiProps) {
+  const pagamentiOrdinati = [...pagamenti].sort(
+    (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime(),
+  );
+
   return (
     <main className="recenti-container">
       <h2 className="i-miei-pagamenti">I MIEI PAGAMENTI</h2>
-      {pagamenti.map((p, index) => (
+      {pagamentiOrdinati.map((p, index) => (
         <div className="spesa-singola" key={index}>
           <img src="icona-acquisto.svg" className="icona-acquisto" />
           <div className="descrizione-e-data">
