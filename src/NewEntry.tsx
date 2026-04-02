@@ -19,7 +19,7 @@ export default function NewEntry({ onSalva }: NewEntryProps) {
   return (
     <main className="new-entry-container">
       <div className="prima-parte">
-        <h1 className="entrate">Gestionale spese</h1>
+        <h1 className="gestionale-spese">Gestionale spese</h1>
         <h2 className="inserisci-dati">Inserisci i dati del pagamento:</h2>
       </div>
 
@@ -29,7 +29,6 @@ export default function NewEntry({ onSalva }: NewEntryProps) {
             <span className="tipo-operazione">
               {segno === "+" ? "Entrata" : "Uscita"}
             </span>
-
             <div className="segno">
               <button
                 className={segno === "+" ? "segno-attivo" : ""}
@@ -37,7 +36,6 @@ export default function NewEntry({ onSalva }: NewEntryProps) {
               >
                 +
               </button>
-
               <button
                 className={segno === "-" ? "segno-attivo" : ""}
                 onClick={() => setSegno("-")}
@@ -46,9 +44,7 @@ export default function NewEntry({ onSalva }: NewEntryProps) {
               </button>
             </div>
           </div>
-
           <span className="euro">€</span>
-
           <input
             type="number"
             className="input-prezzo"

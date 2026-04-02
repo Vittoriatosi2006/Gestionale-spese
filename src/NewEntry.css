@@ -17,7 +17,7 @@
   margin-top: 8%;
 }
 
-.entrate {
+.gestionale-spese {
   font-size: clamp(1.8rem, 6vw, 2.4rem); /* leggermente più grande */
   font-weight: 800; /* più spesso */
   color: #704257; /* colore pieno, scuro e leggibile */
