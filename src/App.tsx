@@ -7,7 +7,6 @@ import type { Pagamento } from "./type";
 function App() {
   const [pagamenti, setPagamenti] = useState<Pagamento[]>([]);
 
-  // Carica i pagamenti dal localStorage quando il componente si monta
   useEffect(() => {
     const datiSalvati = localStorage.getItem("pagamenti");
     if (datiSalvati) {
@@ -16,9 +15,19 @@ function App() {
   }, []);
 
   const aggiungiPagamento = (p: Pagamento) => {
-    const nuoviPagamenti = [p, ...pagamenti]; // aggiunge in cima alla lista
+    const nuoviPagamenti = [p, ...pagamenti];
     setPagamenti(nuoviPagamenti);
-    localStorage.setItem("pagamenti", JSON.stringify(nuoviPagamenti)); // <-- qui si salva
+    localStorage.setItem("pagamenti", JSON.stringify(nuoviPagamenti));
+  };
+
+  const eliminaPagamento = (index: number) => {
+    const conferma = window.confirm("Vuoi davvero eliminare questo pagamento?");
+    if (!conferma) return;
+
+    const nuoviPagamenti = [...pagamenti];
+    nuoviPagamenti.splice(index, 1);
+    setPagamenti(nuoviPagamenti);
+    localStorage.setItem("pagamenti", JSON.stringify(nuoviPagamenti));
   };
 
   return (
@@ -26,7 +35,7 @@ function App() {
       <Navbar />
       <div className="main-content">
         <NewEntry onSalva={aggiungiPagamento} />
-        <Recenti pagamenti={pagamenti} />
+        <Recenti pagamenti={pagamenti} onElimina={eliminaPagamento} />
       </div>
     </div>
   );

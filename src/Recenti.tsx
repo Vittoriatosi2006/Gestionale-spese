@@ -1,25 +1,25 @@
 import "./Recenti.css";
 import type { Pagamento } from "./type";
 
+// aggiungi onElimina qui
 interface RecentiProps {
   pagamenti: Pagamento[];
+  onElimina: (index: number) => void;
 }
 
 type PagamentiPerMese = {
   [mese: string]: Pagamento[];
 };
 
-export default function Recenti({ pagamenti }: RecentiProps) {
-  // Ordinai pagamenti dal più recente al meno recente
+export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
   const pagamentiOrdinati = [...pagamenti].sort(
     (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime(),
   );
 
-  // Raggruppa per mese
   const pagamentiPerMese: PagamentiPerMese = {};
   pagamentiOrdinati.forEach((p) => {
     const date = new Date(p.data);
-    const mese = date.toLocaleDateString("it-IT", { month: "long" }); // solo mese
+    const mese = date.toLocaleDateString("it-IT", { month: "long" });
     if (!pagamentiPerMese[mese]) {
       pagamentiPerMese[mese] = [];
     }
@@ -34,14 +34,19 @@ export default function Recenti({ pagamenti }: RecentiProps) {
         <div key={mese}>
           <h3 className="mese-sezione">{mese}</h3>
           {pagamentiDelMese.map((p, index) => (
-            <div className="spesa-singola" key={index}>
+            <div
+              className="spesa-singola"
+              key={index}
+              onClick={() => onElimina(pagamenti.indexOf(p))}
+              style={{ cursor: "pointer" }}
+            >
               <img src="icona-acquisto.svg" className="icona-acquisto" />
               <div className="descrizione-e-data">
                 <h3 className="descrizione-pagamento">{p.descrizione}</h3>
                 <span className="data-pagamento">
                   {new Date(p.data).toLocaleDateString("it-IT", {
                     day: "numeric",
-                    month: "long", // mantiene giorno + mese
+                    month: "long",
                   })}
                 </span>
               </div>
