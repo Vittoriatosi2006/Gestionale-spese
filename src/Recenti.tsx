@@ -37,18 +37,8 @@ export default function Recenti({
   });
 
   const handleClickPagamento = (id: number) => {
-    const pagamento = pagamenti.find((p) => p.id === id);
-    if (pagamento) {
-      onModifica(pagamento);
-    }
-  };
-
-  const handleConfirm = () => {
-    if (selectedId !== null) {
-      onElimina(selectedId);
-      setModalOpen(false);
-      setSelectedId(null);
-    }
+    setSelectedId(id);
+    setModalOpen(true);
   };
 
   const handleCancel = () => {
@@ -81,7 +71,9 @@ export default function Recenti({
               </div>
               <div className="prezzo-e-metodo">
                 <h3
-                  className={`prezzo-pagamento ${p.importo >= 0 ? "entrata" : "spesa"}`}
+                  className={`prezzo-pagamento ${
+                    p.importo >= 0 ? "entrata" : "spesa"
+                  }`}
                 >
                   {p.importo >= 0 ? "+" : "-"} €{" "}
                   {Math.abs(p.importo).toFixed(2)}
@@ -97,8 +89,22 @@ export default function Recenti({
 
       <ConfirmModal
         isOpen={modalOpen}
-        message="Vuoi eliminare questo pagamento?"
-        onConfirm={handleConfirm}
+        title="Cosa vuoi fare?"
+        message="Vuoi modificare o eliminare questo pagamento?"
+        onModifica={() => {
+          if (selectedId === null) return;
+          const pagamento = pagamenti.find((p) => p.id === selectedId);
+          if (!pagamento) return;
+          onModifica(pagamento);
+          setModalOpen(false);
+          setSelectedId(null);
+        }}
+        onElimina={() => {
+          if (selectedId === null) return;
+          onElimina(selectedId);
+          setModalOpen(false);
+          setSelectedId(null);
+        }}
         onCancel={handleCancel}
       />
     </main>

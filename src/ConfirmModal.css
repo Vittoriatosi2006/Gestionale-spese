@@ -42,7 +42,8 @@
 }
 
 .modal-cancel,
-.modal-confirm {
+.modal-modifica,
+.modal-elimina {
   flex: 1;
   padding: 8px 0;
   border-radius: 6px;
@@ -52,6 +53,7 @@
   transition: all 0.2s ease;
 }
 
+/* Annulla */
 .modal-cancel {
   background-color: #f5f3f6;
   color: #66455b;
@@ -60,11 +62,21 @@
   background-color: #e0d9df;
 }
 
-.modal-confirm {
-  background-color: #94342a;
+/* Modifica */
+.modal-modifica {
+  background-color: #d06b8a; /* rosa */
   color: white;
 }
-.modal-confirm:hover {
+.modal-modifica:hover {
+  background-color: #e07a99;
+}
+
+/* Elimina */
+.modal-elimina {
+  background-color: #94342a; /* rosso */
+  color: white;
+}
+.modal-elimina:hover {
   background-color: #a53e31;
 }
 

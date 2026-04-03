@@ -2,8 +2,8 @@ type ConfirmModalProps = {
   isOpen: boolean;
   title?: string;
   message: string;
-  confirmText?: string;
-  onConfirm: () => void;
+  onModifica?: () => void;
+  onElimina?: () => void;
   onCancel: () => void;
 };
 
@@ -11,8 +11,8 @@ export default function ConfirmModal({
   isOpen,
   title = "Conferma",
   message,
-  confirmText = "Conferma",
-  onConfirm,
+  onModifica,
+  onElimina,
   onCancel,
 }: ConfirmModalProps) {
   if (!isOpen) return null;
@@ -23,11 +23,18 @@ export default function ConfirmModal({
         <h3>{title}</h3>
         <p>{message}</p>
         <div className="modal-actions">
+          {onModifica && (
+            <button className="modal-modifica" onClick={onModifica}>
+              Modifica
+            </button>
+          )}
+          {onElimina && (
+            <button className="modal-elimina" onClick={onElimina}>
+              Elimina
+            </button>
+          )}
           <button className="modal-cancel" onClick={onCancel}>
             Annulla
-          </button>
-          <button className="modal-confirm" onClick={onConfirm}>
-            {confirmText}
           </button>
         </div>
       </div>
