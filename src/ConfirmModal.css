@@ -1,4 +1,3 @@
-/* overlay semi-trasparente */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -69,7 +68,6 @@
   background-color: #a53e31;
 }
 
-/* animazione di entrata */
 @keyframes fadeInScale {
   from {
     opacity: 0;

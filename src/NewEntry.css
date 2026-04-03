@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-/*1 parte*/
+/*1 PARTE*/
 .prima-parte {
   display: flex;
   flex-direction: column;
@@ -18,9 +18,9 @@
 }
 
 .gestionale-spese {
-  font-size: clamp(1.8rem, 6vw, 2.4rem); /* leggermente più grande */
-  font-weight: 800; /* più spesso */
-  color: #704257; /* colore pieno, scuro e leggibile */
+  font-size: clamp(1.8rem, 6vw, 2.4rem);
+  font-weight: 800;
+  color: #704257;
   text-shadow:
     0 2px 6px rgba(231, 191, 215, 0.5),
     /* glow rosa più evidente */ 0 3px 6px rgba(0, 0, 0, 0.2); /* ombra nera morbida per contrasto */
@@ -30,10 +30,10 @@
 
 .inserisci-dati {
   font-size: clamp(1rem, 3vw, 1.2rem);
-  color: #8d8b8f; /* grigio elegante */
+  color: #8d8b8f;
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.1),
-    0 0 6px rgba(231, 191, 215, 0.2); /* leggero glow rosa */
+    0 0 6px rgba(231, 191, 215, 0.2);
   animation: bounceIn 0.8s ease-out forwards;
   animation-delay: 0.2s; /* parte dopo Entrate */
   transition: all 0.3s ease;
@@ -56,7 +56,7 @@
   }
 }
 
-/*2 parte*/
+/*2 PARTE*/
 .seconda-parte {
   display: flex;
   flex-direction: column;
@@ -178,8 +178,7 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* terza parte */
-
+/* 3 PARTE */
 .terza-parte {
   display: flex;
   flex-direction: column;
@@ -250,7 +249,7 @@ input[type="number"]::-webkit-inner-spin-button {
   height: 16px;
 }
 
-/* quarta parte */
+/* 4 PARTE */
 .quarta-parte {
   display: flex;
   flex-direction: column;
@@ -273,8 +272,8 @@ input[type="number"]::-webkit-inner-spin-button {
   padding: 10px 15px;
   border-radius: 20px;
   height: 50px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* ombra leggera */
-  transition: all 0.3s ease; /* per animazioni */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
   position: relative;
   box-sizing: border-box;
   transition: all 0.8s ease;
@@ -330,7 +329,7 @@ input[type="number"]::-webkit-inner-spin-button {
   border-radius: 20px;
   height: 40px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* ombra leggera */
-  transition: all 0.3s ease; /* per animazioni */
+  transition: all 0.3s ease;
   position: relative;
   box-sizing: border-box;
   transition: all 0.8s ease;
@@ -344,7 +343,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .input-data:focus {
-  transform: scale(1.02); /* ingrandimento leggero */
+  transform: scale(1.02);
   box-shadow:
     0 4px 12px rgba(231, 191, 215, 0.6),
     /* glow rosa */ 0 2px 6px rgba(0, 0, 0, 0.15); /* ombra standard */
@@ -354,7 +353,7 @@ input[type="number"]::-webkit-inner-spin-button {
   animation: gradientShift 2s ease infinite;
 }
 
-/*quinta parte*/
+/* 5 PARTE */
 .quinta-parte {
   display: flex;
   justify-content: center;
@@ -387,7 +386,6 @@ input[type="number"]::-webkit-inner-spin-button {
     0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* pseudo-elemento bianco centrale */
 .salva::after {
   content: "";
   position: absolute;

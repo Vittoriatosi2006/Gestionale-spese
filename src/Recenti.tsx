@@ -38,7 +38,7 @@ export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
 
   const handleConfirm = () => {
     if (selectedId !== null) {
-      onElimina(selectedId); // passa direttamente l'ID
+      onElimina(selectedId);
       setModalOpen(false);
       setSelectedId(null);
     }
@@ -59,8 +59,8 @@ export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
           {pagamentiDelMese.map((p) => (
             <div
               className="spesa-singola"
-              key={p.id} // usa ID unico
-              onClick={() => handleClickPagamento(p.id)} // passa ID
+              key={p.id}
+              onClick={() => handleClickPagamento(p.id)}
             >
               <img src="icona-acquisto.svg" className="icona-acquisto" />
               <div className="descrizione-e-data">
