@@ -18,8 +18,9 @@ body {
   background: radial-gradient(
     circle at center,
     #e7bfd7 0%,
-    #f8f9ff 80%,
-    #ffffff 90%
+    #f8f9ff 75%,
+    #f5e3ee 90%,
+    #f5e3ee 100%
   );
 }
 
