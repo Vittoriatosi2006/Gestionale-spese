@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./NewEntry.css";
 import "./style.css";
 import type { Pagamento } from "./type";
 
 interface NewEntryProps {
   onSalva: (p: Pagamento) => void;
+  pagamentoDaModificare?: Pagamento | null;
 }
 
-export default function NewEntry({ onSalva }: NewEntryProps) {
+export default function NewEntry({
+  onSalva,
+  pagamentoDaModificare,
+}: NewEntryProps) {
   const [bottoneSelezionato, setBottoneSelezionato] = useState<
     "carta" | "contanti"
   >("carta");
@@ -15,6 +19,16 @@ export default function NewEntry({ onSalva }: NewEntryProps) {
   const [descrizione, setDescrizione] = useState("");
   const [data, setData] = useState("");
   const [segno, setSegno] = useState("+");
+
+  useEffect(() => {
+    if (pagamentoDaModificare) {
+      setImporto(Math.abs(pagamentoDaModificare.importo));
+      setDescrizione(pagamentoDaModificare.descrizione);
+      setData(pagamentoDaModificare.data);
+      setBottoneSelezionato(pagamentoDaModificare.metodo);
+      setSegno(pagamentoDaModificare.importo >= 0 ? "+" : "-");
+    }
+  }, [pagamentoDaModificare]);
 
   return (
     <main className="new-entry-container">
@@ -115,7 +129,7 @@ export default function NewEntry({ onSalva }: NewEntryProps) {
               segno === "-" ? -Number(importo) : Number(importo);
 
             onSalva({
-              id: Date.now(),
+              id: pagamentoDaModificare ? pagamentoDaModificare.id : Date.now(),
               importo: importoFinale,
               metodo: bottoneSelezionato,
               descrizione,

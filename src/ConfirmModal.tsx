@@ -1,8 +1,8 @@
-// ConfirmModal.tsx
 type ConfirmModalProps = {
   isOpen: boolean;
   title?: string;
   message: string;
+  confirmText?: string;
   onConfirm: () => void;
   onCancel: () => void;
 };
@@ -11,6 +11,7 @@ export default function ConfirmModal({
   isOpen,
   title = "Conferma",
   message,
+  confirmText = "Conferma",
   onConfirm,
   onCancel,
 }: ConfirmModalProps) {
@@ -26,7 +27,7 @@ export default function ConfirmModal({
             Annulla
           </button>
           <button className="modal-confirm" onClick={onConfirm}>
-            Elimina
+            {confirmText}
           </button>
         </div>
       </div>

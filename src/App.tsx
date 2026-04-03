@@ -7,6 +7,9 @@ import type { Pagamento } from "./type";
 function App() {
   const [pagamenti, setPagamenti] = useState<Pagamento[]>([]);
 
+  const [pagamentoDaModificare, setPagamentoDaModificare] =
+    useState<Pagamento | null>(null);
+
   // Carica dal localStorage
   useEffect(() => {
     const datiSalvati = localStorage.getItem("pagamenti");
@@ -16,7 +19,17 @@ function App() {
   }, []);
 
   const aggiungiPagamento = (p: Pagamento) => {
-    const nuoviPagamenti = [p, ...pagamenti];
+    let nuoviPagamenti;
+
+    if (pagamentoDaModificare) {
+      // modifica pagamento
+      nuoviPagamenti = pagamenti.map((pag) => (pag.id === p.id ? p : pag));
+      setPagamentoDaModificare(null);
+    } else {
+      // nuovo pagamento
+      nuoviPagamenti = [p, ...pagamenti];
+    }
+
     setPagamenti(nuoviPagamenti);
     localStorage.setItem("pagamenti", JSON.stringify(nuoviPagamenti));
   };
@@ -31,8 +44,15 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="main-content">
-        <NewEntry onSalva={aggiungiPagamento} />
-        <Recenti pagamenti={pagamenti} onElimina={eliminaPagamento} />
+        <NewEntry
+          onSalva={aggiungiPagamento}
+          pagamentoDaModificare={pagamentoDaModificare}
+        />
+        <Recenti
+          pagamenti={pagamenti}
+          onElimina={eliminaPagamento}
+          onModifica={setPagamentoDaModificare}
+        />
       </div>
     </div>
   );

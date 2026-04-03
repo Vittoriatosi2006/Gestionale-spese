@@ -7,13 +7,18 @@ import "./ConfirmModal.css";
 interface RecentiProps {
   pagamenti: Pagamento[];
   onElimina: (id: number) => void;
+  onModifica: (p: Pagamento) => void;
 }
 
 type PagamentiPerMese = {
   [mese: string]: Pagamento[];
 };
 
-export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
+export default function Recenti({
+  pagamenti,
+  onElimina,
+  onModifica,
+}: RecentiProps) {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
@@ -32,8 +37,10 @@ export default function Recenti({ pagamenti, onElimina }: RecentiProps) {
   });
 
   const handleClickPagamento = (id: number) => {
-    setSelectedId(id);
-    setModalOpen(true);
+    const pagamento = pagamenti.find((p) => p.id === id);
+    if (pagamento) {
+      onModifica(pagamento);
+    }
   };
 
   const handleConfirm = () => {
