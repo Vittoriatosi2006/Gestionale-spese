@@ -16,23 +16,29 @@ function App() {
     if (datiSalvati) {
       setPagamenti(JSON.parse(datiSalvati));
     }
+    {
+      /* json.parse trasforma una stringa in oggetto js */
+    }
   }, []);
 
   const aggiungiPagamento = (p: Pagamento) => {
     let nuoviPagamenti;
 
     if (pagamentoDaModificare) {
-      // modifica pagamento
+      // p = pagamento modificato o nuovo, pag = ogni elemento dell'array pagamenti
+      // se c'è un nuovo p, viene aggiunto, altrimenti rimane quello vecchio
       nuoviPagamenti = pagamenti.map((pag) => (pag.id === p.id ? p : pag));
       setPagamentoDaModificare(null);
     } else {
-      // nuovo pagamento
       nuoviPagamenti = [p, ...pagamenti];
     }
 
     setPagamenti(nuoviPagamenti);
     localStorage.setItem("pagamenti", JSON.stringify(nuoviPagamenti));
   };
+  {
+    /* json.stringfy trasforma un oggetto js in una stringa */
+  }
 
   const eliminaPagamento = (id: number) => {
     const nuoviPagamenti = pagamenti.filter((p) => p.id !== id);
