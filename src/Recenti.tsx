@@ -50,8 +50,10 @@ export default function Recenti({
     <main className="recenti-container">
       <h2 className="i-miei-pagamenti">I MIEI PAGAMENTI</h2>
 
+      {/*object.entries crea un oggetto con tutti i dati, in questo caso viene creato un oggetto per ogni mese contenente i pagamenti di quel mese*/}
       {Object.entries(pagamentiPerMese).map(([mese, pagamentiDelMese]) => (
         <div key={mese}>
+          {/* esempio: pagamenti di aprile */}
           <h3 className="mese-sezione">{mese}</h3>
           {pagamentiDelMese.map((p) => (
             <div
@@ -60,6 +62,7 @@ export default function Recenti({
               onClick={() => handleClickPagamento(p.id)}
             >
               <img src="icona-acquisto.svg" className="icona-acquisto" />
+              {/*descrizione e data a sinistra */}
               <div className="descrizione-e-data">
                 <h3 className="descrizione-pagamento">{p.descrizione}</h3>
                 <span className="data-pagamento">
@@ -69,6 +72,7 @@ export default function Recenti({
                   })}
                 </span>
               </div>
+              {/* prezzo e metodo a destra */}
               <div className="prezzo-e-metodo">
                 <h3
                   className={`prezzo-pagamento ${
@@ -76,6 +80,8 @@ export default function Recenti({
                   }`}
                 >
                   {p.importo >= 0 ? "+" : "-"} €{" "}
+                  {/*Math.abs = restituisce il numero selezionato senza + o -*/}
+                  {/*toFixed(2) = restituisce il numero con 2 cifre decimali*/}
                   {Math.abs(p.importo).toFixed(2)}
                 </h3>
                 <span className="metodo-pagamento">
@@ -93,6 +99,9 @@ export default function Recenti({
         message="Vuoi modificare o eliminare questo pagamento?"
         onModifica={() => {
           if (selectedId === null) return;
+          {
+            /* find scorre l'array e restituisce il primo elemento che soddisfa la condizione, e la condizione sarebbe di cercare l'elemento con lo stesso id che abbiamo selezionato*/
+          }
           const pagamento = pagamenti.find((p) => p.id === selectedId);
           if (!pagamento) return;
           onModifica(pagamento);
