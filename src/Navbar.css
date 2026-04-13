@@ -68,6 +68,138 @@
   transition: 0.2s ease-in-out;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeOverlay 0.2s ease;
+}
+
+.saldo-card {
+  background: linear-gradient(135deg, #ffffff, #f8eef4);
+  padding: 22px;
+  border-radius: 20px;
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.25),
+    0 0 20px rgba(231, 191, 215, 0.5);
+  min-width: 260px;
+  max-width: 90%;
+  animation: scaleIn 0.25s ease;
+}
+
+.saldo-card h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #6d4c5b;
+}
+
+.saldo-card p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin: 6px 0;
+  font-weight: 500;
+}
+
+.saldo-card p:hover {
+  transform: translateX(3px);
+  transition: 0.2s;
+}
+
+.cassaforte {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #e8dbe2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cassaforte input {
+  width: 90px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  border: 1px solid #d6c2cc;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.cassaforte input:focus {
+  border-color: #d88bb0;
+  box-shadow: 0 0 5px rgba(216, 139, 176, 0.5);
+}
+.riga-saldo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.valore {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit {
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.edit:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.riga-saldo input {
+  width: 90px;
+  padding: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+@keyframes fadeOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* animazione apertura */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
     padding: 0 1.5rem;
