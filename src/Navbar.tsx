@@ -9,10 +9,6 @@ interface NavbarProps {
   setCassaforte: (n: number) => void;
   showSaldo: boolean;
   setShowSaldo: (b: boolean) => void;
-  adjustCarta: string;
-  setAdjustCarta: (n: string) => void;
-  adjustContanti: string;
-  setAdjustContanti: (n: string) => void;
 }
 
 export default function Navbar({
@@ -22,14 +18,8 @@ export default function Navbar({
   setCassaforte,
   showSaldo,
   setShowSaldo,
-  adjustCarta,
-  setAdjustCarta,
-  adjustContanti,
-  setAdjustContanti,
 }: NavbarProps) {
-  const [editing, setEditing] = useState<
-    "carta" | "contanti" | "cassaforte" | null
-  >(null);
+  const [editing, setEditing] = useState(false);
 
   const oggi = new Date().toLocaleDateString("it-IT", {
     day: "numeric",
@@ -65,71 +55,33 @@ export default function Navbar({
           <div className="saldo-card" onClick={(e) => e.stopPropagation()}>
             <h3>Totale soldi</h3>
 
-            {/* CARTA */}
+            {/* 💳 CARTA */}
             <div className="riga-saldo">
               <span>💳 Carta</span>
-
-              {editing === "carta" ? (
-                <input
-                  type="number"
-                  value={adjustCarta}
-                  onChange={(e) => setAdjustCarta(e.target.value)}
-                  onBlur={() => setEditing(null)} //quando smetto di modificare l’input, esco dalla modalità modifica
-                  autoFocus //quando questo input appare, mettici subito il cursore dentro
-                />
-              ) : (
-                <div className="valore">
-                  € {totaleCarta.toFixed(2)}
-                  <span onClick={() => setEditing("carta")} className="edit">
-                    ✏️
-                  </span>
-                </div>
-              )}
+              <div className="valore">€ {totaleCarta.toFixed(2)}</div>
             </div>
 
-            {/* CONTANTI */}
+            {/* 👛 CONTANTI */}
             <div className="riga-saldo">
               <span>👛 Contanti</span>
-
-              {editing === "contanti" ? (
-                <input
-                  type="number"
-                  value={adjustContanti}
-                  onChange={(e) => setAdjustContanti(e.target.value)}
-                  onBlur={() => setEditing(null)}
-                  autoFocus
-                />
-              ) : (
-                <div className="valore">
-                  € {totaleContanti.toFixed(2)}
-                  <span onClick={() => setEditing("contanti")} className="edit">
-                    ✏️
-                  </span>
-                </div>
-              )}
+              <div className="valore">€ {totaleContanti.toFixed(2)}</div>
             </div>
 
-            {/* CASSAFORTE */}
-            <div className="riga-saldo">
+            {/* 🔐 CASSAFORTE */}
+            <div className="riga-saldo cassaforte">
               <span>🔐 Cassaforte</span>
 
-              {editing === "cassaforte" ? (
+              {editing ? (
                 <input
                   type="number"
-                  value={String(cassaforte)}
+                  value={cassaforte}
                   onChange={(e) => setCassaforte(Number(e.target.value))}
-                  onBlur={() => setEditing(null)}
+                  onBlur={() => setEditing(false)}
                   autoFocus
                 />
               ) : (
-                <div className="valore">
+                <div className="valore" onClick={() => setEditing(true)}>
                   € {cassaforte.toFixed(2)}
-                  <span
-                    onClick={() => setEditing("cassaforte")}
-                    className="edit"
-                  >
-                    ✏️
-                  </span>
                 </div>
               )}
             </div>

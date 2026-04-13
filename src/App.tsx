@@ -5,15 +5,26 @@ import Recenti from "./Recenti";
 import type { Pagamento } from "./type";
 
 function App() {
-  const [pagamenti, setPagamenti] = useState<Pagamento[]>([]); //pagamenti è la lista principale di tutti i movimenti salvati
+  const [pagamenti, setPagamenti] = useState<Pagamento[]>([]);
   const [pagamentoDaModificare, setPagamentoDaModificare] =
-    useState<Pagamento | null>(null); //se si fa su un pagamento che già esiste serve a modificarlo, se è null ne creo uno nuovo
+    useState<Pagamento | null>(null); //se si fa un pagamentoche già esiste lo modifica, se è null ne crea uno nuovo
   const [showSaldo, setShowSaldo] = useState(false); //mostra o nasconde la card con i saldi totali
-  const [adjustCarta, setAdjustCarta] = useState<string>(""); //serve a tenere traccia di quanto l'utente vuole aggiungere o togliere al saldo carta manualmente
-  const [adjustContanti, setAdjustContanti] = useState<string>(""); //serve a tenere traccia di quanto l'utente vuole aggiungere o togliere al saldo contanti manualmente
-  const [cassaforte, setCassaforte] = useState<number>(0); //importo totalle  della cassaforte, e si modifica a mano
+  const [cassaforte, setCassaforte] = useState<number>(0); //importo totale della casssaforte, e si modifica a mano
 
-  //somme automatiche basate sui pagamenti salvati
+  useEffect(() => {
+    const dati = localStorage.getItem("pagamenti");
+    if (dati) setPagamenti(JSON.parse(dati)); //json.parse trasforma la stringa in un array di oggetti
+
+    const safe = localStorage.getItem("cassaforte");
+    if (safe) setCassaforte(Number(safe)); //Number(safe) = lo trasforma da stringa a numero
+  }, []);
+
+  const aggiornaCassaforte = (val: number) => {
+    setCassaforte(val);
+    localStorage.setItem("cassaforte", String(val));
+  };
+
+  // CALCOLI AUTOMATICI
   const totaleCarta = pagamenti
     .filter((p) => p.metodo === "carta")
     .reduce((acc, p) => acc + p.importo, 0);
@@ -21,55 +32,33 @@ function App() {
     .filter((p) => p.metodo === "contanti")
     .reduce((acc, p) => acc + p.importo, 0);
 
-  //queste due costanti servono per mostrare il saldo aggiornato quando si modifica il saldo manualmente
-  const totaleCartaFinale = totaleCarta + (Number(adjustCarta) || 0);
-  const totaleContantiFinale = totaleContanti + (Number(adjustContanti) || 0);
-
-  useEffect(() => {
-    const datiSalvati = localStorage.getItem("pagamenti");
-    if (datiSalvati) {
-      setPagamenti(JSON.parse(datiSalvati));
-    }
-  }, []);
-
   const aggiungiPagamento = (p: Pagamento) => {
-    let nuoviPagamenti;
-
+    let nuovi;
     if (pagamentoDaModificare) {
-      // p = pagamento modificato o nuovo, pag = ogni ele,e to dell'rray  pagamenti
-      // se c'è un nnhovo p, viene aggiunti, ltrimenti rimane quellp vecchio
-      nuoviPagamenti = pagamenti.map((pag) => (pag.id === p.id ? p : pag));
+      nuovi = pagamenti.map((pag) => (pag.id === p.id ? p : pag)); //se stiamo modificando un id gia esistente lo sostituisce, altrimenti lascia tutto com'è
       setPagamentoDaModificare(null);
     } else {
-      nuoviPagamenti = [p, ...pagamenti];
-    }
-
-    setPagamenti(nuoviPagamenti);
-    localStorage.setItem("pagamenti", JSON.stringify(nuoviPagamenti));
+      nuovi = [p, ...pagamenti];
+    } //sennò aggiunge un nuovo pagamento in cima alla lista
+    setPagamenti(nuovi);
+    localStorage.setItem("pagamenti", JSON.stringify(nuovi));
   };
-  {
-    /* json.stringify trasfora un oggetto js in una stringa */
-  }
 
   const eliminaPagamento = (id: number) => {
-    const nuoviPagamenti = pagamenti.filter((p) => p.id !== id);
-    setPagamenti(nuoviPagamenti);
-    localStorage.setItem("pagamenti", JSON.stringify(nuoviPagamenti));
+    const nuovi = pagamenti.filter((p) => p.id !== id);
+    setPagamenti(nuovi);
+    localStorage.setItem("pagamenti", JSON.stringify(nuovi)); //json.stringify trasforma l'array di oggetti in una stringa
   };
 
   return (
     <div className="App">
       <Navbar
-        totaleCarta={totaleCartaFinale}
-        totaleContanti={totaleContantiFinale}
+        totaleCarta={totaleCarta}
+        totaleContanti={totaleContanti}
         cassaforte={cassaforte}
-        setCassaforte={setCassaforte}
+        setCassaforte={aggiornaCassaforte}
         showSaldo={showSaldo}
         setShowSaldo={setShowSaldo}
-        adjustCarta={adjustCarta}
-        setAdjustCarta={setAdjustCarta}
-        adjustContanti={adjustContanti}
-        setAdjustContanti={setAdjustContanti}
       />
 
       <div className="main-content">
