@@ -32,11 +32,6 @@ export default function NewEntry({
 
   return (
     <main className="new-entry-container">
-      {/* <div className="prima-parte">
-        <h1 className="gestionale-spese">Gestionale spese</h1>
-        <h2 className="inserisci-dati">Inserisci i dati del pagamento:</h2>
-      </div> */}
-
       <div className="seconda-parte">
         <div className="card-importo">
           <div className="toggle">

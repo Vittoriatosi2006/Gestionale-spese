@@ -8,54 +8,6 @@
   box-sizing: border-box;
 }
 
-/*1 PARTE*/
-.prima-parte {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  margin-top: 8%;
-}
-
-.gestionale-spese {
-  font-size: clamp(1.8rem, 6vw, 2.4rem);
-  font-weight: 800;
-  color: #704257;
-  text-shadow:
-    0 2px 6px rgba(231, 191, 215, 0.5),
-    /* glow rosa più evidente */ 0 3px 6px rgba(0, 0, 0, 0.2); /* ombra nera morbida per contrasto */
-  animation: bounceIn 0.8s ease-out forwards; /* rimbalzo leggero */
-  transition: all 0.3s ease;
-}
-
-.inserisci-dati {
-  font-size: clamp(1rem, 3vw, 1.2rem);
-  color: #8d8b8f;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.1),
-    0 0 6px rgba(231, 191, 215, 0.2);
-  animation: bounceIn 0.8s ease-out forwards;
-  animation-delay: 0.2s; /* parte dopo Entrate */
-  transition: all 0.3s ease;
-}
-
-@keyframes bounceIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px) scale(0.95);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(5px) scale(1.05);
-  }
-  80% {
-    transform: translateY(-2px) scale(1);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
-}
-
 /*2 PARTE*/
 .seconda-parte {
   background: #f8eef4;
@@ -76,7 +28,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px; /* 👈 questo crea lo spazio tra toggle e importo */
+  gap: 20px;
 }
 
 .toggle {
@@ -176,9 +128,13 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .metodi-di-pagamento-testo {
-  color: rgb(148, 147, 147);
   font-size: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  color: #906579;
+  text-shadow:
+    0 2px 6px rgba(231, 191, 215, 0.5),
+    /* glow rosa più evidente */ 0 3px 6px rgba(0, 0, 0, 0.2); /* ombra nera morbida per contrasto */
+  animation: bounceIn 0.8s ease-out forwards; /* rimbalzo leggero */
 }
 
 .bottoni-pagamenti {
@@ -247,9 +203,14 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .descrizione {
-  color: rgb(148, 147, 147);
   font-size: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  color: #906579;
+  text-shadow:
+    0 2px 6px rgba(231, 191, 215, 0.5),
+    /* glow rosa più evidente */ 0 3px 6px rgba(0, 0, 0, 0.2); /* ombra nera morbida per contrasto */
+  animation: bounceIn 0.8s ease-out forwards; /* rimbalzo leggero */
+  transition: all 0.3s ease;
 }
 
 .input-descrizione {
@@ -303,9 +264,14 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .data {
-  color: rgb(148, 147, 147);
   font-size: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  color: #906579;
+  text-shadow:
+    0 2px 6px rgba(231, 191, 215, 0.5),
+    /* glow rosa più evidente */ 0 3px 6px rgba(0, 0, 0, 0.2); /* ombra nera morbida per contrasto */
+  animation: bounceIn 0.8s ease-out forwards; /* rimbalzo leggero */
+  transition: all 0.3s ease;
 }
 
 .input-data {
@@ -416,5 +382,23 @@ input[type="number"]::-webkit-inner-spin-button {
   100% {
     width: 0%;
     opacity: 0;
+  }
+}
+
+/*x metodo di pagamento, descizione, data*/
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(5px) scale(1);
+  }
+  80% {
+    transform: translateY(-2px) scale(1);
+  }
+  100% {
+    transform: translateY(0) scale(1);
   }
 }
