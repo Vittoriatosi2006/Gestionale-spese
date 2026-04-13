@@ -32,42 +32,38 @@ export default function NewEntry({
 
   return (
     <main className="new-entry-container">
-      <div className="prima-parte">
+      {/* <div className="prima-parte">
         <h1 className="gestionale-spese">Gestionale spese</h1>
         <h2 className="inserisci-dati">Inserisci i dati del pagamento:</h2>
-      </div>
+      </div> */}
 
       <div className="seconda-parte">
-        <div className="importo">
-          <div className="segno-container">
-            <span className="tipo-operazione">
-              {segno === "+" ? "Entrata" : "Uscita"}
-            </span>
-            <div className="segno">
-              <button
-                className={segno === "+" ? "segno-attivo" : ""}
-                onClick={() => setSegno("+")}
-              >
-                +
-              </button>
-              <button
-                className={segno === "-" ? "segno-attivo" : ""}
-                onClick={() => setSegno("-")}
-              >
-                -
-              </button>
-            </div>
+        <div className="card-importo">
+          <div className="toggle">
+            <div
+              className={`toggle-indicatore ${segno === "-" ? "destra" : ""}`}
+            ></div>
+
+            <button className="toggle-btn" onClick={() => setSegno("+")}>
+              ENTRATA
+            </button>
+
+            <button className="toggle-btn" onClick={() => setSegno("-")}>
+              USCITA
+            </button>
           </div>
-          <span className="euro">€</span>
-          <input
-            type="number"
-            className="input-prezzo"
-            placeholder="0,00"
-            value={importo}
-            onChange={(e) =>
-              setImporto(e.target.value === "" ? "" : Number(e.target.value))
-            }
-          />
+          <div className="display-importo">
+            <span className="euro">€</span>
+            <input
+              type="number"
+              className="input-importo"
+              placeholder="0,000"
+              value={importo}
+              onChange={(e) =>
+                setImporto(e.target.value === "" ? "" : Number(e.target.value))
+              }
+            />
+          </div>
         </div>
       </div>
 

@@ -58,120 +58,109 @@
 
 /*2 PARTE*/
 .seconda-parte {
+  background: #f8eef4;
+  border-radius: 20px;
+  padding: 30px 20px;
+  width: 90%;
+  max-width: 320px;
+  margin: 60px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.importo {
+.card-importo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* 👈 questo crea lo spazio tra toggle e importo */
+}
+
+.toggle {
+  width: 100%; /* oppure più grande */
+  max-width: 350px;
+  position: relative;
+  display: flex;
+  background-color: #ebdee4;
+  border-radius: 20px;
+  padding: 10px;
+  height: 40px;
+  overflow: hidden;
+  transition: all 0.8s ease;
+}
+
+.toggle:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 6px 14px rgba(102, 69, 91, 0.9),
+    0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-indicatore {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: calc(50% - 6px);
+  height: calc(100% - 12px);
+  background: linear-gradient(120deg, white, #fff, #f8eef4);
+  border-radius: 16px;
+  box-shadow:
+    0 0 10px rgba(231, 191, 215, 0.8),
+    0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.toggle-indicatore.destra {
+  transform: translateX(100%);
+}
+
+.toggle-btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #6b6b6b;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.display-importo {
   display: flex;
   align-items: center;
-  gap: 40px;
+  justify-content: center;
 }
 
 .euro {
+  font-size: 40px;
   color: #66455b;
-  font-size: 50px;
+  margin-right: 6px;
 }
 
-.segno {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-right: 10px;
-  margin-left: 10px;
-  align-items: center;
-}
-
-.segno button {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: #f5f3f6;
-  color: #66455b;
-
-  box-shadow:
-    #8d8b8f 0px 2px 4px,
-    rgba(0, 0, 0, 0.1) 0px 1px 2px;
-
-  transition: all 0.2s ease;
-}
-
-.segno button:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow:
-    #8d8b8f 0px 4px 8px,
-    rgba(0, 0, 0, 0.15) 0px 2px 4px;
-}
-
-.segno button:active {
-  transform: scale(0.95);
-  box-shadow:
-    #8d8b8f 0px 1px 2px,
-    rgba(0, 0, 0, 0.1) 0px 1px 1px;
-}
-
-.segno button:focus {
-  outline: none;
-  box-shadow:
-    0 0 0 2px #e7bfd7,
-    #8d8b8f 0px 2px 4px;
-}
-
-.segno-attivo {
-  background: linear-gradient(135deg, #836177, #a18497);
-  color: white;
-
-  transform: scale(1.08);
-
-  box-shadow:
-    #6e4f61 0px 4px 10px,
-    rgba(0, 0, 0, 0.25) 0px 2px 6px;
-}
-.segno-attivo:hover {
-  transform: scale(1.12);
-  box-shadow:
-    #6e4f61 0px 6px 14px,
-    rgba(0, 0, 0, 0.3) 0px 3px 8px;
-}
-
-.segno-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 10px;
-  padding-bottom: 20px;
-}
-
-.tipo-operazione {
-  font-size: 12px;
-  margin-bottom: 4px;
-  color: #666;
-}
-
-.input-prezzo {
+.input-importo {
   border: none;
   background: transparent;
-  font-size: 35px;
+  font-size: 48px;
+  font-weight: bold;
+  color: #66455b;
+  width: 140px;
   outline: none;
-  width: 120px;
-  padding: 5px 0;
-  border-bottom: 2px solid transparent;
-  transition: all 0.25s ease;
-}
-.input-prezzo:focus,
-.input-prezzo:hover {
-  border-bottom: 2px solid #e7bfd7;
-  transform: scale(1.05);
-  text-shadow: 0 0 6px rgba(231, 191, 215, 0.6);
+  text-align: left;
 }
 
-/*per togliere le frecce di incremento/decremento nei campi numerici*/
+.input-importo::placeholder {
+  color: #66455b;
+  opacity: 1;
+}
+
+/* Rimuove frecce */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -183,7 +172,6 @@ input[type="number"]::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 60px;
 }
 
 .metodi-di-pagamento-testo {
@@ -195,8 +183,8 @@ input[type="number"]::-webkit-inner-spin-button {
 .bottoni-pagamenti {
   position: relative;
   display: flex;
-  background-color: #e9e5e7;
-  border-radius: 20px;
+  background-color: #ebdee4;
+  border-radius: 10px;
   padding: 6px;
   height: 50px;
   overflow: hidden;
@@ -217,7 +205,7 @@ input[type="number"]::-webkit-inner-spin-button {
   width: calc(50% - 6px);
   height: calc(100% - 12px);
   background: linear-gradient(120deg, white, #fff, #f8eef4);
-  border-radius: 16px;
+  border-radius: 10px;
   box-shadow:
     0 0 10px rgba(231, 191, 215, 0.8),
     0 2px 6px rgba(0, 0, 0, 0.15);
@@ -270,7 +258,7 @@ input[type="number"]::-webkit-inner-spin-button {
   outline: none;
   width: 100%;
   padding: 10px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
   height: 50px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
@@ -326,7 +314,7 @@ input[type="number"]::-webkit-inner-spin-button {
   outline: none;
   width: 70%;
   padding: 10px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
   height: 40px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* ombra leggera */
   transition: all 0.3s ease;

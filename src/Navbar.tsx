@@ -46,7 +46,6 @@ export default function Navbar({
 
         <div className="navbar-destra">
           <span className="data-di-oggi">{oggi}</span>
-          <img src="/icona-calendario.png" className="icona-calendario" />
         </div>
       </nav>
 

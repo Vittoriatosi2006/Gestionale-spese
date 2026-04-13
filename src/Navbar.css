@@ -63,18 +63,6 @@
   white-space: nowrap;
 }
 
-.icona-calendario {
-  width: 1.75rem;
-  height: 1.75rem;
-  cursor: pointer;
-}
-
-.icona-calendario:hover {
-  transform: scale(1.1);
-  transition: 0.2s ease-in-out;
-}
-
-/* OVERLAY */
 .overlay {
   position: fixed;
   top: 0;
@@ -98,7 +86,6 @@
   }
 }
 
-/* CARD */
 .saldo-card {
   background: linear-gradient(135deg, #ffffff, #f8eef4);
   padding: 22px;
@@ -110,8 +97,6 @@
   max-width: 90%;
   animation: scaleIn 0.25s ease;
 }
-
-/* TITOLO */
 .saldo-card h3 {
   font-size: 16px;
   margin-bottom: 12px;
@@ -119,7 +104,6 @@
   text-align: center;
 }
 
-/* RIGA GENERALE */
 .riga-saldo {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -128,21 +112,18 @@
   margin: 10px 0;
 }
 
-/* ICONA */
 .icona-saldo {
   width: 22px;
   height: 22px;
   object-fit: contain;
 }
 
-/* TESTO (Carta / Contanti / Cassaforte) */
 .riga-saldo span {
   font-size: 14px;
   color: #3a3a3a;
   justify-self: start;
 }
 
-/* IMPORTO A DESTRA */
 .valore {
   justify-self: end;
   color: #74978e;
@@ -151,14 +132,12 @@
   gap: 8px;
 }
 
-/* CASSAFORTE */
 .cassaforte {
   margin-top: 12px;
   padding-top: 10px;
   border-top: 1px solid #e8dbe2;
 }
 
-/* INPUT CASSAFORTE */
 .cassaforte input {
   width: 90px;
   padding: 5px 8px;
