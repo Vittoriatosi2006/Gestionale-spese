@@ -74,6 +74,7 @@ export default function NewEntry({
       <div className="terza-parte">
         <h3 className="metodi-di-pagamento-testo">METODI DI PAGAMENTO</h3>
         <div className="bottoni-pagamenti">
+          {/* l'indicatore sarebbe l'ozpione selezionata, quindi o contanti o carta */}
           <div
             className={`indicatore ${
               bottoneSelezionato === "contanti" ? "destra" : "sinistra"
