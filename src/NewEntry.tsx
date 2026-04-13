@@ -57,7 +57,7 @@ export default function NewEntry({
             <input
               type="number"
               className="input-importo"
-              placeholder="0,000"
+              placeholder="0,00"
               value={importo}
               onChange={(e) =>
                 setImporto(e.target.value === "" ? "" : Number(e.target.value))
