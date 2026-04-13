@@ -55,35 +55,42 @@ export default function Navbar({
           <div className="saldo-card" onClick={(e) => e.stopPropagation()}>
             <h3>Totale soldi</h3>
 
-            {/* 💳 CARTA */}
+            {/* CARTA */}
             <div className="riga-saldo">
-              <span>💳 Carta</span>
+              <img src="/icona-carta.svg" className="icona-saldo" />
+              <span> Carta</span>
               <div className="valore">€ {totaleCarta.toFixed(2)}</div>
             </div>
 
-            {/* 👛 CONTANTI */}
+            {/* CONTANTI */}
             <div className="riga-saldo">
-              <span>👛 Contanti</span>
+              <img src="/icona-contanti.svg" className="icona-saldo" />
+              <span>Contanti</span>
               <div className="valore">€ {totaleContanti.toFixed(2)}</div>
             </div>
 
-            {/* 🔐 CASSAFORTE */}
+            {/* CASSAFORTE */}
             <div className="riga-saldo cassaforte">
-              <span>🔐 Cassaforte</span>
+              <img src="/icona-cassaforte.svg" className="icona-saldo" />
 
-              {editing ? (
-                <input
-                  type="number"
-                  value={cassaforte}
-                  onChange={(e) => setCassaforte(Number(e.target.value))}
-                  onBlur={() => setEditing(false)}
-                  autoFocus
-                />
-              ) : (
-                <div className="valore" onClick={() => setEditing(true)}>
-                  € {cassaforte.toFixed(2)}
-                </div>
-              )}
+              <span>Cassaforte</span>
+
+              <div
+                className="valore"
+                onClick={() => !editing && setEditing(true)}
+              >
+                {editing ? (
+                  <input
+                    type="number"
+                    value={cassaforte}
+                    onChange={(e) => setCassaforte(Number(e.target.value))}
+                    onBlur={() => setEditing(false)}
+                    autoFocus
+                  />
+                ) : (
+                  <>€ {cassaforte.toFixed(2)}</>
+                )}
+              </div>
             </div>
           </div>
         </div>
