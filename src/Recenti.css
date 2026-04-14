@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-.i-miei-pagamenti {
+.lista-pagamenti {
   font-size: clamp(1rem, 3vw, 1.2rem);
   color: #8d8b8f;
   text-shadow:
@@ -17,6 +17,7 @@
     0 0 6px rgba(231, 191, 215, 0.2);
   transition: all 0.3s ease;
   padding-bottom: 20px;
+  text-align: center;
 }
 
 .mese-sezione {

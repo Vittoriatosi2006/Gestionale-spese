@@ -53,7 +53,7 @@ export default function Recenti({
 
   return (
     <main className="recenti-container">
-      <h2 className="i-miei-pagamenti">I MIEI PAGAMENTI</h2>
+      <h2 className="lista-pagamenti">LISTA PAGAMENTI</h2>
 
       {/*object.entries crea un oggetto con tutti i dati, in questo caso viene creato un oggetto per ogni mese contenente i pagamenti di quel mese*/}
       {Object.entries(pagamentiPerGiorno).map(
