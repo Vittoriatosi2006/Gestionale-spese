@@ -146,7 +146,6 @@ input[type="number"]::-webkit-inner-spin-button {
   text-shadow:
     0 2px 6px rgba(231, 191, 215, 0.5),
     /* glow rosa più evidente */ 0 3px 6px rgba(0, 0, 0, 0.2); /* ombra nera morbida per contrasto */
-  animation: bounceIn 0.8s ease-out forwards; /* rimbalzo leggero */
 }
 
 .bottoni-pagamenti {
@@ -221,7 +220,6 @@ input[type="number"]::-webkit-inner-spin-button {
   text-shadow:
     0 2px 6px rgba(231, 191, 215, 0.5),
     /* glow rosa più evidente */ 0 3px 6px rgba(0, 0, 0, 0.2); /* ombra nera morbida per contrasto */
-  animation: bounceIn 0.8s ease-out forwards; /* rimbalzo leggero */
   transition: all 0.3s ease;
 }
 
@@ -282,7 +280,6 @@ input[type="number"]::-webkit-inner-spin-button {
   text-shadow:
     0 2px 6px rgba(231, 191, 215, 0.5),
     /* glow rosa più evidente */ 0 3px 6px rgba(0, 0, 0, 0.2); /* ombra nera morbida per contrasto */
-  animation: bounceIn 0.8s ease-out forwards; /* rimbalzo leggero */
   transition: all 0.3s ease;
 }
 
