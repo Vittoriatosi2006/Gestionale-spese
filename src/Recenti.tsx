@@ -27,13 +27,18 @@ export default function Recenti({
     (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime(),
   );
 
-  // Raggruppa per mese
-  const pagamentiPerMese: PagamentiPerMese = {};
+  //Ordina pagamenti per giorno
+  const pagamentiPerGiorno: PagamentiPerMese = {};
   pagamentiOrdinati.forEach((p) => {
     const date = new Date(p.data);
-    const mese = date.toLocaleDateString("it-IT", { month: "long" });
-    if (!pagamentiPerMese[mese]) pagamentiPerMese[mese] = [];
-    pagamentiPerMese[mese].push(p);
+    const giorno = date.toLocaleDateString("it-IT", {
+      day: "numeric",
+      month: "long",
+    });
+    if (!pagamentiPerGiorno[giorno]) {
+      pagamentiPerGiorno[giorno] = [];
+    }
+    pagamentiPerGiorno[giorno].push(p);
   });
 
   const handleClickPagamento = (id: number) => {
@@ -51,47 +56,43 @@ export default function Recenti({
       <h2 className="i-miei-pagamenti">I MIEI PAGAMENTI</h2>
 
       {/*object.entries crea un oggetto con tutti i dati, in questo caso viene creato un oggetto per ogni mese contenente i pagamenti di quel mese*/}
-      {Object.entries(pagamentiPerMese).map(([mese, pagamentiDelMese]) => (
-        <div key={mese}>
-          {/* esempio: pagamenti di aprile */}
-          <h3 className="mese-sezione">{mese}</h3>
-          {pagamentiDelMese.map((p) => (
-            <div
-              className="spesa-singola"
-              key={p.id}
-              onClick={() => handleClickPagamento(p.id)}
-            >
-              <img src="icona-acquisto.svg" className="icona-acquisto" />
-              {/*descrizione e data a sinistra */}
-              <div className="descrizione-e-data">
-                <h3 className="descrizione-pagamento">{p.descrizione}</h3>
-                <span className="data-pagamento">
-                  {new Date(p.data).toLocaleDateString("it-IT", {
-                    day: "numeric",
-                    month: "long",
-                  })}
-                </span>
+      {Object.entries(pagamentiPerGiorno).map(
+        ([giorno, pagamentiDelGiorno]) => (
+          <div key={giorno}>
+            {/* esempio: pagamenti di aprile */}
+            <h3 className="mese-sezione">{giorno}</h3>
+            {pagamentiDelGiorno.map((p) => (
+              <div
+                className="spesa-singola"
+                key={p.id}
+                onClick={() => handleClickPagamento(p.id)}
+              >
+                <img src="icona-acquisto.svg" className="icona-acquisto" />
+                {/*descrizione e data a sinistra */}
+                <div className="descrizione-e-data">
+                  <h3 className="descrizione-pagamento">{p.descrizione}</h3>
+                </div>
+                {/* prezzo e metodo a destra */}
+                <div className="prezzo-e-metodo">
+                  <h3
+                    className={`prezzo-pagamento ${
+                      p.importo >= 0 ? "entrata" : "spesa"
+                    }`}
+                  >
+                    {p.importo >= 0 ? "+" : "-"} €{" "}
+                    {/*Math.abs = restituisce il numero selezionato senza + o -*/}
+                    {/*toFixed(2) = restituisce il numero con 2 cifre decimali*/}
+                    {Math.abs(p.importo).toFixed(2)}
+                  </h3>
+                  <span className="metodo-pagamento">
+                    {p.metodo === "carta" ? "Carta" : "Contanti"}
+                  </span>
+                </div>
               </div>
-              {/* prezzo e metodo a destra */}
-              <div className="prezzo-e-metodo">
-                <h3
-                  className={`prezzo-pagamento ${
-                    p.importo >= 0 ? "entrata" : "spesa"
-                  }`}
-                >
-                  {p.importo >= 0 ? "+" : "-"} €{" "}
-                  {/*Math.abs = restituisce il numero selezionato senza + o -*/}
-                  {/*toFixed(2) = restituisce il numero con 2 cifre decimali*/}
-                  {Math.abs(p.importo).toFixed(2)}
-                </h3>
-                <span className="metodo-pagamento">
-                  {p.metodo === "carta" ? "Carta" : "Contanti"}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      ))}
+            ))}
+          </div>
+        ),
+      )}
 
       <ConfirmModal
         isOpen={modalOpen}
