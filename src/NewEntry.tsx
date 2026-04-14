@@ -40,10 +40,12 @@ export default function NewEntry({
             ></div>
 
             <button className="toggle-btn" onClick={() => setSegno("+")}>
+              <img src="piu.svg" className="piu" alt="Entrata" />
               ENTRATA
             </button>
 
             <button className="toggle-btn" onClick={() => setSegno("-")}>
+              <img src="meno.svg" className="meno" alt="Uscita" />
               USCITA
             </button>
           </div>
@@ -100,7 +102,7 @@ export default function NewEntry({
           />
         </div>
         <div className="parte-data">
-          <h3 className="data">DATA</h3>
+          <h3 className="data">DATA OPERAZIONE</h3>
           <input
             type="date"
             className="input-data"
@@ -133,7 +135,7 @@ export default function NewEntry({
             setData("");
           }}
         >
-          Salva
+          Salva <img src="salva.svg" alt="Salva" className="icona-salva" />
         </button>
       </div>
     </main>

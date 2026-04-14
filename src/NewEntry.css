@@ -84,6 +84,18 @@
   z-index: 1;
 }
 
+.piu {
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+}
+
+.meno {
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+}
+
 .display-importo {
   display: flex;
   align-items: center;
@@ -364,6 +376,12 @@ input[type="number"]::-webkit-inner-spin-button {
 .salva.clicked::after {
   opacity: 1;
   animation: flashMove 4s ease-out forwards;
+}
+
+.icona-salva {
+  width: 10px;
+  height: 10px;
+  margin-right: 20px;
 }
 
 @keyframes flashMove {
