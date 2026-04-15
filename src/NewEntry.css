@@ -297,10 +297,9 @@ input[type="number"]::-webkit-inner-spin-button {
   outline: none;
   box-shadow:
     0 4px 12px rgba(231, 191, 215, 0.6),
-    /* glow rosa */ 0 3px 8px rgba(0, 0, 0, 0.15); /* ombra standard */
+    /* glow rosa */ 0 4px 6px rgba(0, 0, 0, 0.15); /* ombra standard */
   background: linear-gradient(120deg, #ffffff, #f8eef4, #ffffff);
   background-size: 200% 200%;
-  animation: gradientShift 2s ease infinite;
 }
 
 .input-data:hover {
