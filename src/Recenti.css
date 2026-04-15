@@ -162,7 +162,7 @@
   color: rgb(133, 123, 123);
 }
 
-.campo input:hover {
+.campo input {
   border: none;
   outline: none;
   transform: scale(1.02); /* ingrandimento leggero */
