@@ -23,6 +23,7 @@ export default function Recenti({
   const [selectedId, setSelectedId] = useState<number | null>(null); //per modiifcare o eliminare un pagamento
   const [dataDa, setDataDa] = useState("");
   const [dataA, setDataA] = useState("");
+  const [filtroOpen, setFiltroOpen] = useState(false);
 
   const pagamentiFiltrati = pagamenti.filter((p) => {
     const dataPagamento = new Date(p.data).getTime();
@@ -72,32 +73,50 @@ export default function Recenti({
 
   return (
     <main className="recenti-container">
-      <h2 className="lista-pagamenti">LISTA PAGAMENTI</h2>
-
-      <span className="filtra-per-data"> Filtra per data : </span>
-      <div className="filtro-data">
-        <input
-          type="date"
-          value={dataDa}
-          onChange={(e) => setDataDa(e.target.value)}
-        />
-        <span className="trattino">→</span>
-        <input
-          type="date"
-          value={dataA}
-          onChange={(e) => setDataA(e.target.value)}
-        />
-        {(dataDa || dataA) && (
-          <button
-            onClick={() => {
-              setDataDa("");
-              setDataA("");
-            }}
-          >
-            Reset
-          </button>
-        )}
+      <div className="header-pagamenti">
+        <h2 className="lista-pagamenti">LISTA PAGAMENTI</h2>
+        <button className="btn-apri-filtro" onClick={() => setFiltroOpen(true)}>
+          <img src="icona-filtri.png" className="icona-filtro" />
+        </button>
       </div>
+
+      {filtroOpen && (
+        <div className="overlay-filtro" onClick={() => setFiltroOpen(false)}>
+          <div className="card-filtro" onClick={(e) => e.stopPropagation()}>
+            <h3>Filtra per data</h3>
+            <div className="campo">
+              <label>Da:</label>
+              <input
+                type="date"
+                value={dataDa}
+                onChange={(e) => setDataDa(e.target.value)}
+              />
+            </div>
+            <div className="campo">
+              <label>A:</label>
+              <input
+                type="date"
+                value={dataA}
+                onChange={(e) => setDataA(e.target.value)}
+              />
+            </div>
+            <button className="applica" onClick={() => setFiltroOpen(false)}>
+              Applica filtri
+            </button>
+            {(dataDa || dataA) && (
+              <button
+                className="reset"
+                onClick={() => {
+                  setDataDa("");
+                  setDataA("");
+                }}
+              >
+                Reset
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {/*object.entries crea un oggetto con tutti i dati, in questo caso viene creato un oggetto per ogni mese contenente i pagamenti di quel mese*/}
       {Object.entries(pagamentiPerGiorno).map(
