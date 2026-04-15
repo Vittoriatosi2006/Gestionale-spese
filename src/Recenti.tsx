@@ -75,9 +75,27 @@ export default function Recenti({
     <main className="recenti-container">
       <div className="header-pagamenti">
         <h2 className="lista-pagamenti">LISTA PAGAMENTI</h2>
-        <button className="btn-apri-filtro" onClick={() => setFiltroOpen(true)}>
-          <img src="icona-filtri.png" className="icona-filtro" />
-        </button>
+
+        <div className="azioni-header">
+          {(dataDa || dataA) && (
+            <button
+              className="reset-header"
+              onClick={() => {
+                setDataDa("");
+                setDataA("");
+              }}
+            >
+              Reset
+            </button>
+          )}
+
+          <button
+            className="btn-apri-filtro"
+            onClick={() => setFiltroOpen(true)}
+          >
+            <img src="icona-filtri.png" className="icona-filtro" />
+          </button>
+        </div>
       </div>
 
       {filtroOpen && (
@@ -92,6 +110,7 @@ export default function Recenti({
                 onChange={(e) => setDataDa(e.target.value)}
               />
             </div>
+
             <div className="campo">
               <label>A:</label>
               <input
@@ -103,17 +122,6 @@ export default function Recenti({
             <button className="applica" onClick={() => setFiltroOpen(false)}>
               Applica filtri
             </button>
-            {(dataDa || dataA) && (
-              <button
-                className="reset"
-                onClick={() => {
-                  setDataDa("");
-                  setDataA("");
-                }}
-              >
-                Reset
-              </button>
-            )}
           </div>
         </div>
       )}

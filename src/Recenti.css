@@ -23,6 +23,12 @@
   gap: 10px;
 }
 
+.header-pagamenti {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .lista-pagamenti {
   font-size: clamp(1.2rem, 3vw, 1.2rem);
   color: #906579;
@@ -37,7 +43,45 @@
   font-weight: 800;
 }
 
+.azioni-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 80px;
+}
+
+.reset-header {
+  margin-right: 8px;
+  white-space: nowrap;
+  background: #f7eaee;
+  border: none;
+  border-radius: 12px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #7b4f6a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reset-header:hover {
+  background: #ffe9f0;
+  transform: scale(1.05);
+}
+
+.reset-header:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(123, 79, 106, 0.2);
+}
+
+.reset-header:active {
+  transform: scale(0.95);
+}
+
 .btn-apri-filtro {
+  position: relative;
+  z-index: 2;
   padding: 6px 10px;
   border-radius: 12px;
   border: none;
@@ -45,7 +89,7 @@
   cursor: pointer;
   margin: 25px 0;
   width: auto;
-  height: 34px;
+  height: 28px;
   display: flex; /* centra icona */
   align-items: center;
   justify-content: center;
@@ -62,6 +106,7 @@
     0 0 15px rgba(231, 191, 215, 0.9),
     0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
 .icona-filtro {
   width: 16px;
   height: 16px;
@@ -99,6 +144,12 @@
   color: #906579;
 }
 
+.card-filtro input[type="date"] {
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
 .campo {
   display: flex;
   flex-direction: column;
@@ -111,10 +162,29 @@
   color: rgb(133, 123, 123);
 }
 
-.card-filtro input[type="date"] {
-  padding: 8px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
+.campo input:hover {
+  border: none;
+  outline: none;
+  transform: scale(1.02); /* ingrandimento leggero */
+  box-shadow:
+    0 4px 12px rgba(231, 191, 215, 0.6),
+    /* glow rosa */ 0 3px 8px rgba(0, 0, 0, 0.15); /* ombra standard */
+
+  background: linear-gradient(120deg, #ffffff, #f8eef4, #ffffff);
+  background-size: 200% 200%;
+  animation: gradientShift 2s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .applica {
@@ -128,73 +198,23 @@
   font-weight: 700;
 }
 
-.reset {
-  background: transparent;
-  border: none;
-  color: #5a5a5a;
-  font-size: 12px;
-  font-weight: 700;
+.applica:hover {
+  background: #6a435b;
+  transform: scale(1.07);
 }
 
-.filtro-data {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 10px 0 30px;
-}
-
-.filtra-per-data {
-  border-top: 10px solid transparent;
-  border-left: 6px solid transparent;
-  font-size: 0.7rem;
-  color: #555;
-}
-
-.filtro-data input[type="date"] {
-  padding: 3px 4px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 12px;
-  background: white;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.filtro-data input[type="date"]:focus {
+.applica:focus {
   outline: none;
-  transform: scale(1.03);
-  box-shadow:
-    0 6px 14px rgba(102, 69, 91, 0.9),
-    0 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 3px rgba(123, 79, 106, 0.3);
 }
 
-.filtro-data input[type="date"]:active {
-  transform: scale(0.97);
+.applica:active {
+  transform: scale(1.05);
 }
 
 .trattino {
   font-size: 14px;
   color: #999;
-}
-
-.filtro-data button {
-  border: none;
-  border-radius: 5px;
-  padding: 6px 8px;
-  cursor: pointer;
-  font-size: 8px;
-  background: #fae3e3;
-  color: #555;
-  transition: 0.2s;
-}
-
-.filtro-data button:hover {
-  transform: scale(1.05);
-  background: #eaeaea;
-}
-
-.filtro-data button:active {
-  transform: scale(0.95);
 }
 
 .mese-sezione {
