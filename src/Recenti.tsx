@@ -19,11 +19,30 @@ export default function Recenti({
   onElimina,
   onModifica,
 }: RecentiProps) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [modalOpen, setModalOpen] = useState(false); //per aprire o chiudere il modal con le somme
+  const [selectedId, setSelectedId] = useState<number | null>(null); //per modiifcare o eliminare un pagamento
+  const [dataDa, setDataDa] = useState("");
+  const [dataA, setDataA] = useState("");
+
+  const pagamentiFiltrati = pagamenti.filter((p) => {
+    const dataPagamento = new Date(p.data).getTime();
+    if (dataDa && dataA) {
+      return (
+        dataPagamento >= new Date(dataDa).getTime() &&
+        dataPagamento <= new Date(dataA).getTime()
+      );
+    }
+    if (dataDa) {
+      return dataPagamento >= new Date(dataDa).getTime();
+    }
+    if (dataA) {
+      return dataPagamento <= new Date(dataA).getTime();
+    }
+    return true;
+  });
 
   // Ordina pagamenti dal più recente al meno recente
-  const pagamentiOrdinati = [...pagamenti].sort(
+  const pagamentiOrdinati = [...pagamentiFiltrati].sort(
     (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime(),
   );
 
@@ -54,6 +73,31 @@ export default function Recenti({
   return (
     <main className="recenti-container">
       <h2 className="lista-pagamenti">LISTA PAGAMENTI</h2>
+
+      <span className="filtra-per-data"> Filtra per data : </span>
+      <div className="filtro-data">
+        <input
+          type="date"
+          value={dataDa}
+          onChange={(e) => setDataDa(e.target.value)}
+        />
+        <span className="trattino">→</span>
+        <input
+          type="date"
+          value={dataA}
+          onChange={(e) => setDataA(e.target.value)}
+        />
+        {(dataDa || dataA) && (
+          <button
+            onClick={() => {
+              setDataDa("");
+              setDataA("");
+            }}
+          >
+            Reset
+          </button>
+        )}
+      </div>
 
       {/*object.entries crea un oggetto con tutti i dati, in questo caso viene creato un oggetto per ogni mese contenente i pagamenti di quel mese*/}
       {Object.entries(pagamentiPerGiorno).map(

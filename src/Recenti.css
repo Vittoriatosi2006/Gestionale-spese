@@ -1,3 +1,7 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
 .recenti-container {
   display: flex;
   flex-direction: column;
@@ -21,6 +25,67 @@
   padding-bottom: 20px;
   text-align: center;
   font-weight: 800;
+}
+
+.filtro-data {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 30px;
+}
+
+.filtra-per-data {
+  border-top: 10px solid transparent;
+  border-left: 6px solid transparent;
+  font-size: 0.7rem;
+  color: #555;
+}
+
+.filtro-data input[type="date"] {
+  padding: 3px 4px; /* 🔽 più piccolo */
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 12px; /* 🔽 ridotto */
+  background: white;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.filtro-data input[type="date"]:focus {
+  outline: none;
+  transform: scale(1.03);
+  box-shadow:
+    0 6px 14px rgba(102, 69, 91, 0.9),
+    0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.filtro-data input[type="date"]:active {
+  transform: scale(0.97);
+}
+
+.trattino {
+  font-size: 14px;
+  color: #999;
+}
+
+.filtro-data button {
+  border: none;
+  border-radius: 5px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 8px;
+  background: #fae3e3;
+  color: #555;
+  transition: 0.2s;
+}
+
+.filtro-data button:hover {
+  transform: scale(1.05);
+  background: #eaeaea;
+}
+
+.filtro-data button:active {
+  transform: scale(0.95);
 }
 
 .mese-sezione {
