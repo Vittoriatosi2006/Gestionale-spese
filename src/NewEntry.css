@@ -284,19 +284,23 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .input-data {
-  border: none;
   background-color: white;
   font-size: 14px;
-  outline: none;
   width: 70%;
   padding: 10px 15px;
   border-radius: 10px;
   height: 40px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* ombra leggera */
-  transition: all 0.3s ease;
   position: relative;
   box-sizing: border-box;
   transition: all 0.8s ease;
+  border: none;
+  outline: none;
+  box-shadow:
+    0 4px 12px rgba(231, 191, 215, 0.6),
+    /* glow rosa */ 0 3px 8px rgba(0, 0, 0, 0.15); /* ombra standard */
+  background: linear-gradient(120deg, #ffffff, #f8eef4, #ffffff);
+  background-size: 200% 200%;
+  animation: gradientShift 2s ease infinite;
 }
 
 .input-data:hover {
