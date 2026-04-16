@@ -23,6 +23,9 @@ export default function ConfirmModal({
         <h3>{title}</h3>
         <p>{message}</p>
         <div className="modal-actions">
+          <button className="modal-cancel" onClick={onCancel}>
+            Annulla
+          </button>
           {onModifica && (
             <button className="modal-modifica" onClick={onModifica}>
               Modifica
@@ -33,9 +36,6 @@ export default function ConfirmModal({
               Elimina
             </button>
           )}
-          <button className="modal-cancel" onClick={onCancel}>
-            Annulla
-          </button>
         </div>
       </div>
     </div>
