@@ -24,20 +24,31 @@ export default function Recenti({
   const [dataDa, setDataDa] = useState("");
   const [dataA, setDataA] = useState("");
   const [filtroOpen, setFiltroOpen] = useState(false); //per filtrare i pagamenti per data
+  const [tipoFiltro, setTipoFiltro] = useState("tutti"); //per la select entrate e uscite
 
   const pagamentiFiltrati = pagamenti.filter((p) => {
     const dataPagamento = new Date(p.data).getTime();
+
+    // filtro per data
     if (dataDa && dataA) {
-      return (
-        dataPagamento >= new Date(dataDa).getTime() &&
-        dataPagamento <= new Date(dataA).getTime()
-      );
+      if (
+        dataPagamento < new Date(dataDa).getTime() ||
+        dataPagamento > new Date(dataA).getTime()
+      ) {
+        return false;
+      }
+    } else if (dataDa) {
+      if (dataPagamento < new Date(dataDa).getTime()) return false;
+    } else if (dataA) {
+      if (dataPagamento > new Date(dataA).getTime()) return false;
     }
-    if (dataDa) {
-      return dataPagamento >= new Date(dataDa).getTime();
+
+    //filtro per tipo (entrate o uscite)
+    if (tipoFiltro === "entrate" && p.importo <= 0) {
+      return false;
     }
-    if (dataA) {
-      return dataPagamento <= new Date(dataA).getTime();
+    if (tipoFiltro === "uscite" && p.importo >= 0) {
+      return false;
     }
     return true;
   });
@@ -84,25 +95,37 @@ export default function Recenti({
       <div className="header-pagamenti">
         <h2 className="lista-pagamenti">LISTA PAGAMENTI</h2>
 
-        <div className="azioni-header">
-          {(dataDa || dataA) && (
-            <button
-              className="reset-header"
-              onClick={() => {
-                setDataDa("");
-                setDataA("");
-              }}
-            >
-              Reset
-            </button>
-          )}
-
-          <button
-            className="btn-apri-filtro"
-            onClick={() => setFiltroOpen(true)}
+        <div className="barra-filtri">
+          <select
+            value={tipoFiltro}
+            onChange={(e) => setTipoFiltro(e.target.value)}
           >
-            <img src="icona-filtri.png" className="icona-filtro" />
-          </button>
+            <option value="tutti">Tutti</option>
+            <option value="entrate">Entrate</option>
+            <option value="uscite">Uscite</option>
+          </select>
+
+          {/*bottone reset che appare e scompare */}
+          <div className="azioni-header">
+            {(dataDa || dataA) && (
+              <button
+                className="reset-header"
+                onClick={() => {
+                  setDataDa("");
+                  setDataA("");
+                }}
+              >
+                Reset
+              </button>
+            )}
+
+            <button
+              className="btn-apri-filtro"
+              onClick={() => setFiltroOpen(true)}
+            >
+              <img src="icona-filtri.png" className="icona-filtro" />
+            </button>
+          </div>
         </div>
       </div>
 
