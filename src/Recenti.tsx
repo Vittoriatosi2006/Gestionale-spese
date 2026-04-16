@@ -20,10 +20,10 @@ export default function Recenti({
   onModifica,
 }: RecentiProps) {
   const [modalOpen, setModalOpen] = useState(false); //per aprire o chiudere il modal con le somme
-  const [selectedId, setSelectedId] = useState<number | null>(null); //per modiifcare o eliminare un pagamento
+  const [selectedId, setSelectedId] = useState<number | null>(null); //per modificare o eliminare un pagamento
   const [dataDa, setDataDa] = useState("");
   const [dataA, setDataA] = useState("");
-  const [filtroOpen, setFiltroOpen] = useState(false);
+  const [filtroOpen, setFiltroOpen] = useState(false); //per filtrare i pagamenti per data
 
   const pagamentiFiltrati = pagamenti.filter((p) => {
     const dataPagamento = new Date(p.data).getTime();
@@ -41,6 +41,14 @@ export default function Recenti({
     }
     return true;
   });
+
+  const totaleEntrate = pagamentiFiltrati
+    .filter((p) => p.importo > 0)
+    .reduce((acc, p) => acc + p.importo, 0);
+
+  const totaleUscite = pagamentiFiltrati
+    .filter((p) => p.importo < 0)
+    .reduce((acc, p) => acc + p.importo, 0);
 
   // Ordina pagamenti dal più recente al meno recente
   const pagamentiOrdinati = [...pagamentiFiltrati].sort(
@@ -123,6 +131,19 @@ export default function Recenti({
               Applica filtri
             </button>
           </div>
+        </div>
+      )}
+
+      {/*per registrare le entrate e le uscite nelle date filtrate */}
+      {(dataDa || dataA) && (
+        <div className="riepilogo-filtri">
+          <p className="entrate-filtrate">+ € {totaleEntrate.toFixed(2)}</p>
+          <p className="uscite-filtrate">
+            - € {Math.abs(totaleUscite).toFixed(2)}
+          </p>
+          <p className="totale-filtrato">
+            € {(totaleEntrate + totaleUscite).toFixed(2)}
+          </p>
         </div>
       )}
 

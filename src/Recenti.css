@@ -212,9 +212,39 @@
   transform: scale(1.05);
 }
 
-.trattino {
+.riepilogo-filtri {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+  background-color: white;
+  border-radius: 12px;
+  padding: 12px 10px;
+  max-width: 600px;
+}
+
+.riepilogo-filtri p {
+  flex: 1;
+  margin: 0;
+  padding: 12px;
+  border-radius: 14px;
+  font-weight: 700;
+  text-align: center;
   font-size: 14px;
-  color: #999;
+}
+
+.entrate-filtrate {
+  background: #e6f4ea;
+  color: #2e7d32;
+}
+
+.uscite-filtrate {
+  background: #fbe9e7;
+  color: #c62828;
+}
+
+.totale-filtrato {
+  background: #ede7f6;
+  color: #4527a0;
 }
 
 .mese-sezione {
