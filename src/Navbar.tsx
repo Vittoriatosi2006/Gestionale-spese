@@ -31,7 +31,7 @@ export default function Navbar({
       <nav className="navbar">
         <div className="navbar-sinistra">
           <img
-            src="/icona-principale.svg"
+            src="/icona-navbar.svg"
             className="icona-navbar"
             onClick={() => setShowSaldo(!showSaldo)}
           />

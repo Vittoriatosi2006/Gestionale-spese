@@ -78,22 +78,28 @@
   border: none;
   background: transparent;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 11px;
   color: #6b6b6b;
   cursor: pointer;
   z-index: 1;
 }
 
 .piu {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   margin-right: 4px;
+  border: 1px solid #66455b;
+  border-radius: 12px;
+  padding: 4px;
 }
 
 .meno {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   margin-right: 4px;
+  border: 1px solid #66455b;
+  border-radius: 12px;
+  padding: 4px;
 }
 
 .display-importo {
@@ -140,6 +146,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .metodi-di-pagamento-testo {
+  display: flex;
+  flex-direction: row;
   font-size: 10px;
   margin-bottom: 10px;
   color: #906579;
@@ -148,6 +156,11 @@ input[type="number"]::-webkit-inner-spin-button {
     /* glow rosa più evidente */ 0 3px 6px rgba(0, 0, 0, 0.2); /* ombra nera morbida per contrasto */
 }
 
+.icona-metodo-di-pagamento {
+  width: 11px;
+  height: 9px;
+  margin-left: 6px;
+}
 .bottoni-pagamenti {
   position: relative;
   display: flex;
@@ -214,6 +227,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .descrizione {
+  display: flex;
+  flex-direction: row;
   font-size: 10px;
   margin-bottom: 10px;
   color: #906579;
@@ -223,8 +238,14 @@ input[type="number"]::-webkit-inner-spin-button {
   transition: all 0.3s ease;
 }
 
+.icona-descrizione {
+  width: 11px;
+  height: 11px;
+  margin-left: 6px;
+}
+
 .input-descrizione {
-  border: none;
+  border: 1px solid #ddd;
   background-color: white;
   font-size: 14px;
   outline: none;
@@ -274,6 +295,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .data {
+  display: flex;
+  flex-direction: row;
   font-size: 10px;
   margin-bottom: 10px;
   color: #906579;
@@ -281,6 +304,12 @@ input[type="number"]::-webkit-inner-spin-button {
     0 2px 6px rgba(231, 191, 215, 0.5),
     /* glow rosa più evidente */ 0 3px 6px rgba(0, 0, 0, 0.2); /* ombra nera morbida per contrasto */
   transition: all 0.3s ease;
+}
+
+.icona-calendario {
+  width: 11px;
+  height: 11px;
+  margin-left: 6px;
 }
 
 .input-data {
@@ -293,7 +322,7 @@ input[type="number"]::-webkit-inner-spin-button {
   position: relative;
   box-sizing: border-box;
   transition: all 0.8s ease;
-  border: none;
+  border: 1px solid #ddd;
   outline: none;
   box-shadow:
     0 4px 12px rgba(231, 191, 215, 0.6),

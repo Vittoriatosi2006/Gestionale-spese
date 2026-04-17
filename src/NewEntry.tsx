@@ -65,7 +65,14 @@ export default function NewEntry({
       </div>
 
       <div className="terza-parte">
-        <h3 className="metodi-di-pagamento-testo">METODI DI PAGAMENTO</h3>
+        <h3 className="metodi-di-pagamento-testo">
+          METODI DI PAGAMENTO
+          <img
+            src="icona-metodo-di-pagamento.svg"
+            alt="Metodi di pagamento"
+            className="icona-metodo-di-pagamento"
+          />
+        </h3>
         <div className="bottoni-pagamenti">
           {/* l'indicatore sarebbe l'ozpione selezionata, quindi o contanti o carta */}
           <div
@@ -92,7 +99,14 @@ export default function NewEntry({
 
       <div className="quarta-parte">
         <div className="parte-descrizione">
-          <h3 className="descrizione">DESCRIZIONE</h3>
+          <h3 className="descrizione">
+            DESCRIZIONE
+            <img
+              src="icona-descrizione.svg"
+              alt="Descrizione"
+              className="icona-descrizione"
+            />
+          </h3>
           <input
             type="text"
             className="input-descrizione"
@@ -102,7 +116,10 @@ export default function NewEntry({
           />
         </div>
         <div className="parte-data">
-          <h3 className="data">DATA OPERAZIONE</h3>
+          <h3 className="data">
+            DATA OPERAZIONE
+            <img src="icona-calendario.svg" className="icona-calendario" />
+          </h3>
           <input
             type="date"
             className="input-data"
