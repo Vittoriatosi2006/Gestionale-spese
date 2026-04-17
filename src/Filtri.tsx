@@ -53,7 +53,7 @@ export default function Filtri({
             className="btn-apri-filtro"
             onClick={() => setFiltroOpen(true)}
           >
-            <img src="icona-filtri.png" className="icona-filtro" />
+            <img src="./public/icona-filtri.svg" className="icona-filtro" />
           </button>
         </div>
       </div>
