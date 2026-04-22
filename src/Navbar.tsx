@@ -83,7 +83,7 @@ export default function Navbar({
                     type="number"
                     value={cassaforte}
                     onChange={(e) => setCassaforte(Number(e.target.value))}
-                    onBlur={() => setEditing(false)}
+                    onBlur={() => setEditing(false)} //onBlur si attiva quando un elemento perde il focus
                     autoFocus
                   />
                 ) : (

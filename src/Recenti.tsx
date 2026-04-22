@@ -30,24 +30,29 @@ export default function Recenti({
   const pagamentiFiltrati = pagamenti.filter((p) => {
     const dataPagamento = new Date(p.data).getTime();
 
-    // filtro per data
+    //FILTRO PER DATA
     if (dataDa && dataA) {
+      //se è prima di DataDa o dopo DataA è fuori dal range scelto, quindi il pagamento viene escluso
       if (
         dataPagamento < new Date(dataDa).getTime() ||
         dataPagamento > new Date(dataA).getTime()
       ) {
         return false;
       }
+      //se viene selezionata solo la dataDa, tutti i pagamenti prima di quella data non vengono selezionati
     } else if (dataDa) {
       if (dataPagamento < new Date(dataDa).getTime()) return false;
+      //se viene selezionata solo la DataA, tutti i pagamenti dopo di quella data non vengono selezionati
     } else if (dataA) {
       if (dataPagamento > new Date(dataA).getTime()) return false;
     }
 
-    //filtro per tipo (entrate o uscite)
+    //FILTRO X TIPO (ENTRATE O USCITE)
+    //se il filtro scelto è entrate l'importo non può essere minore di zero
     if (tipoFiltro === "entrate" && p.importo <= 0) {
       return false;
     }
+    //se il filtro scelto è uscite l'importo non può essere maggiore di zero
     if (tipoFiltro === "uscite" && p.importo >= 0) {
       return false;
     }
